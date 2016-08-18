@@ -52,7 +52,7 @@ public class HibernateConfiguration {
         return properties;        
     }
     
-	@Bean
+    @Bean
     @Autowired
     public HibernateTransactionManager transactionManager(SessionFactory s) {
        HibernateTransactionManager txManager = new HibernateTransactionManager();

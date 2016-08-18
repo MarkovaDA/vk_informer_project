@@ -1,5 +1,4 @@
 
-<%@include file="taglib.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>

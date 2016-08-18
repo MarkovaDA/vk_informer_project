@@ -35,6 +35,10 @@ public class HelloWorldController {
 	@Autowired
 	UserService userService;
 	
+        @RequestMapping(value = {"/angular2" }, method = RequestMethod.GET)
+        public String testAngular2(){
+            return "angular2";
+        }
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public String homePage(ModelMap model) {
 		model.addAttribute("greeting", "Hi, Welcome to mysite");

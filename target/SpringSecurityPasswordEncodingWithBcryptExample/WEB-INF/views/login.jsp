@@ -36,6 +36,12 @@
 							</div>
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
+                                                        
+                                                        <div class="input-group input-sm">
+                                                            <div class="checkbox">
+                                                              <label><input type="checkbox" id="rememberme" name="remember-me"> Remember Me</label>  
+                                                            </div>
+                                                        </div>
 								
 							<div class="form-actions">
 								<input type="submit"
