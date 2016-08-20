@@ -35,14 +35,12 @@ public class HelloWorldController {
 	@Autowired
 	UserService userService;
 	
-        @RequestMapping(value = {"/angular2" }, method = RequestMethod.GET)
-        public String testAngular2(){
-            return "angular2";
-        }
+       
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public String homePage(ModelMap model) {
 		model.addAttribute("greeting", "Hi, Welcome to mysite");
-		return "welcome";
+		//return "welcome";
+                return "index";
 	}
 
 	@RequestMapping(value = {"/admin/", "/admin"}, method = RequestMethod.GET)
@@ -141,7 +139,7 @@ public class HelloWorldController {
                     return new ModelAndView("redirect:/client");
                 if (roleName.endsWith("employee"))
                     return new ModelAndView("redirect:/employee");
-                if (roleName.endsWith("boss"))
+                if (roleName.endsWith("admin"))
                     return new ModelAndView("redirect:/admin");
             }
             return new ModelAndView("redirect:/");

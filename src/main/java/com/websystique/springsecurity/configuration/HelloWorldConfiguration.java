@@ -24,7 +24,8 @@ public class HelloWorldConfiguration extends WebMvcConfigurerAdapter {
 	public void configureViewResolvers(ViewResolverRegistry registry) {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		viewResolver.setViewClass(JstlView.class);
-		viewResolver.setPrefix("/WEB-INF/views/");
+		//viewResolver.setPrefix("/WEB-INF/views/");
+                viewResolver.setPrefix("/static/");
 		viewResolver.setSuffix(".jsp");
 		registry.viewResolver(viewResolver);
 	}
@@ -35,7 +36,11 @@ public class HelloWorldConfiguration extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**").addResourceLocations("/static/");       
+        //registry.addResourceHandler("/static/**").addResourceLocations("/static/"); 
+        registry.addResourceHandler("node_modules/**").addResourceLocations("/static/node_modules/");
+        registry.addResourceHandler("app/**").addResourceLocations("/static/app/"); 
+        registry.addResourceHandler("css/**").addResourceLocations("/static/css/"); 
+        registry.addResourceHandler("js/**").addResourceLocations("/static/js/"); 
     }
     
     /*
