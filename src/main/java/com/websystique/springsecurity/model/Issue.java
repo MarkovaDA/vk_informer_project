@@ -33,20 +33,42 @@ public class Issue implements Serializable{
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "status_id") 
     private IssueStatus status; //статус обращения
-         
-    /*@Column(name="user_id")
-    private Integer userId; */
-    
-    @ManyToOne
-    @JoinColumn(name="user_id", referencedColumnName="id")
-    private User employee; //сотрудник, которому адресовано сообщение
-     
-    /*public Integer getUserId() {
-        return userId;
+
+    public User getEmployee() {
+        return employee;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setEmployee(User employee) {
+        this.employee = employee;
+    }
+
+    public User getClient() {
+        return client;
+    }
+
+    public void setClient(User client) {
+        this.client = client;
+    }
+         
+  
+    
+    @ManyToOne
+    @JoinColumn(name="employee_id", referencedColumnName="id")
+    private User employee; //сотрудник, которому адресовано обращение - одно обращение может быть адресовано нескольким сотрудникам
+    
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "client_id") 
+    private User client; //источник обращения - клиент
+     
+    /*@Column(name = "client_id")
+    private Integer clientId;
+
+    public Integer getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
     }*/
         
     public IssueStatus getStatus() {
@@ -66,7 +88,7 @@ public class Issue implements Serializable{
     }
     
     @ManyToMany(mappedBy = "issues", fetch = FetchType.EAGER)
-    private List<Pet> pets;
+    private List<Pet> pets;//одно обращение может быть по нескольким животным
 
     public Integer getId() {
         return id;

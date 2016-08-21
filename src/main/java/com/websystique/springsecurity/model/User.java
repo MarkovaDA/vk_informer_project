@@ -52,11 +52,27 @@ public class User {
 	@Column(name="state", nullable=false)
 	private String state=State.ACTIVE.getState();
         
-        @OneToMany(mappedBy="owner")
+        @OneToMany(mappedBy="owner", fetch = FetchType.EAGER)
         private Set<Pet> pets; //животные данного пользователя
         
-        @OneToMany(mappedBy="employee") //список обращений данного сотрудника
+        @OneToMany(mappedBy="employee",fetch = FetchType.EAGER) //список обращений клиентов к данному сотруднику
         private Set<Issue> issues;
+
+    public Set<Pet> getPets() {
+        return pets;
+    }
+
+    public void setPets(Set<Pet> pets) {
+        this.pets = pets;
+    }
+
+    public Set<Issue> getIssues() {
+        return issues;
+    }
+
+    public void setIssues(Set<Issue> issues) {
+        this.issues = issues;
+    }
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "app_user_user_profile", 

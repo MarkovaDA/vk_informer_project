@@ -4,27 +4,33 @@
 <html>
 <head>
 <title>Client page</title>
-<!--<link rel="stylesheet" href='<spring:url value="css/styles.css"/>' />
+<link rel="stylesheet" href='<spring:url value="css/styles.css"/>' />
 <script type="text/javascript" src='<spring:url value="js/app.js"/>'></script>
 <script type="text/javascript">
-</script>-->
-<link rel="stylesheet" href="css/style.css">
-    <!-- 1. Load libraries -->
-    <!-- Polyfill(s) for older browsers -->
-    <script src="<c:url value='node_modules/core-js/client/shim.min.js'/>"></script>
-    <script src="<c:url value='node_modules/zone.js/dist/zone.js'/>"></script>
-    <script src="<c:url value='node_modules/reflect-metadata/Reflect.js'/>"></script>
-    <script src="<c:url value='node_modules/systemjs/dist/system.src.js'/>"></script>
-    <!-- 2. Configure SystemJS -->
-    <script src="<c:url value='js/systemjs.config.js'/>"></script>
-    <script>
-      System.import('app').catch(function(err){ console.error(err); });
-    </script>
+</script>
 </head>
 <body>
-	<!--<h2>Client Home Page</h2>
+	<h2>Client Home Page</h2>
         <p>Welcome, ${user.firstName} ${user.lastName}</p>
-        <a href="<c:url value="/logout" />">Logout</a> -->
-        <client_page>Loading...</client_page>
+        <a href="<c:url value="/logout" />">Logout</a>
+        <div>
+            <c:choose>
+                <c:when test="${not empty issue}">
+                <h3>Последнее обращение от: ${issue.date}</h3> 
+                <p>доктор: <i>${issue.employee.lastName} ${issue.employee.lastName}</i></p>
+                <p>статус обращения: <b>${issue.status.title}</b></p>
+                <p>Питомцы:</p>
+                    <ul>
+                        <c:forEach var="pet" items="${issue.pets}">
+                            <li>${pet.name}</li>                            
+                        </c:forEach>
+                    </ul>
+                <textarea rows="5" cols="30" disabled="true">Текст обращения, изъятый из другой базы</textarea>
+                </c:when>
+                <c:otherwise>
+                    У Вас еще нет обращений...
+                </c:otherwise>
+            </c:choose>
+        </div>
 </body>
 </html>
