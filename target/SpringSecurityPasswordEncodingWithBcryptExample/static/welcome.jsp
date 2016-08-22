@@ -42,32 +42,32 @@
                         </p>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="width:auto !important; margin: 0 auto !important;">
                 <div class="column">
-                    <div class="ui circular segment" style="float: right;">
+                    <div class="ui circular segment" style="float: right !important;">
                         <img src = "<c:url value='images/preview1.jpg'/>" class="preview_img">
                     </div>
                 </div>
                 <div class="column">
-                    <div class="ui circular segment" style="float: right;">
+                    <div class="ui circular segment" style="float: right !important;">
                         <img src = "<c:url value='images/preview2.jpg'/>" class="preview_img">
                     </div>
                 </div>
                 <div class="column">
-                    <div class="ui circular segment" style="float:right;">
+                    <div class="ui circular segment" style="float: right !important;">
                         <img src = "<c:url value='images/preview3.jpg'/>" class="preview_img">
                     </div>
                 </div>
                 <div class="column">
-                    <div class="ui circular segment" style="float: right;">
+                    <div class="ui circular segment" style="float: right !important;">
                         <img src = "<c:url value='images/preview4.jpg'/>" class="preview_img">
                     </div>
                 </div>
-                <!--<div class="column">
+                <div class="column">
                     <div class="ui circular segment" style="float: right;">
                         <img src = "<c:url value='images/preview5.jpg'/>" class="preview_img">
                     </div>
-                </div>-->
+                </div>
             </div>
             
         </div>

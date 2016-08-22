@@ -1,6 +1,8 @@
 package com.websystique.springsecurity.controller;
 
 import com.websystique.springsecurity.model.Issue;
+import com.websystique.springsecurity.model.Pet;
+import com.websystique.springsecurity.model.SessionUser;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.websystique.springsecurity.model.User;
 import com.websystique.springsecurity.model.UserProfile;
 import com.websystique.springsecurity.service.IssueService;
+import com.websystique.springsecurity.service.PetService;
 import com.websystique.springsecurity.service.UserProfileService;
 import com.websystique.springsecurity.service.UserService;
 import java.util.Iterator;
@@ -40,13 +43,16 @@ public class HelloWorldController {
         @Autowired
         IssueService issueService;
         
+        @Autowired
+        private PetService petService;
+        
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public String homePage(ModelMap model) {
 		model.addAttribute("greeting", "Hi, Welcome to mysite");
 		return "welcome";
                 //return "index";
 	}
-
+       
 	@RequestMapping(value = {"/admin/", "/admin"}, method = RequestMethod.GET)
 	public String adminPage(ModelMap model) {
 		model.addAttribute("user", getPrincipal());
@@ -59,7 +65,10 @@ public class HelloWorldController {
             model.addAttribute("user", currentUser);
             //последнее обращение клиента
             Issue issue = issueService.getLastIssueForClient(currentUser);
+            List<Pet> pets = petService.getPetsByOwner(currentUser.getId());
+            List<Pet> petsByIssue = petService.getPetsByIssue(currentUser.getId(), issue.getId());
             model.addAttribute("issue", issue);
+            model.addAttribute("pets", petsByIssue);
             return new ModelAndView("client");
         }
         
@@ -138,6 +147,7 @@ public class HelloWorldController {
         public ModelAndView welcomeAll()
         {
             User current = getCurrentUser();
+            SessionUser.setCurrentUser(current);
             Set<UserProfile> roles = current.getUserProfiles();
             Iterator<UserProfile> iterator = roles.iterator();
            

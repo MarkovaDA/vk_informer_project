@@ -79,16 +79,16 @@ public class Issue implements Serializable{
         this.status = status;
     }
 
-    public List<Pet> getPets() {
+    /*public List<Pet> getPets() {
         return pets;
     }
 
     public void setPets(List<Pet> pets) {
         this.pets = pets;
-    }
+    }*/
     
-    @ManyToMany(mappedBy = "issues", fetch = FetchType.EAGER)
-    private List<Pet> pets;//одно обращение может быть по нескольким животным
+    /*@ManyToMany(mappedBy = "issues", fetch = FetchType.LAZY)
+    private List<Pet> pets;*/
 
     public Integer getId() {
         return id;

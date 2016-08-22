@@ -7,7 +7,6 @@
     <title>Angular 2 QuickStart</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/style.css">
     <!-- 1. Load libraries -->
     <!-- Polyfill(s) for older browsers -->
     <script src="<c:url value='node_modules/core-js/client/shim.min.js'/>"></script>

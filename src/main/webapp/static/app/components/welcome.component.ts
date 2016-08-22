@@ -1,14 +1,37 @@
 import { Component } from '@angular/core';
+import {HttpPetService} from '../services/http.pet.service';
 
 @Component({
-  selector: 'my-app',
-  template: `<h1>Welcome to our clinic</h1>\n\
-    <br>\n\
-    <a href="entrance">Войти</a>
-    <router-outlet></router-outlet>   `
+  selector: 'pets',
+  //template: `<h1>hello</h1>`
+  templateUrl: 'app/templates/pets.template.html',
+  providers: [HttpPetService]
 })
 
-export class AppComponent {}
+
+
+export class AppComponent {
+    pets;     
+
+   
+    constructor(private httpPetService: HttpPetService){
+    
+    }
+    
+    getPetsFromServer(){
+        
+        this.httpPetService.getPets()
+            .subscribe(
+                data => this.pets 
+                        //= JSON.stringify(data), // put the data returned from the server in our variable
+                        = data,                                
+                error => console.log("Error HTTP GET Service"), // in case of failure show this message
+                () => {console.log(this.pets[0])}
+            );
+    }
+}
+
+
 
 
 

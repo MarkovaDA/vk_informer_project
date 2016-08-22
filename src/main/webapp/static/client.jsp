@@ -4,15 +4,15 @@
 <html>
 <head>
 <title>Client page</title>
-<link rel="stylesheet" href='<spring:url value="css/styles.css"/>' />
-<script type="text/javascript" src='<spring:url value="js/app.js"/>'></script>
-<script type="text/javascript">
-</script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src='<c:url value="js/semantic.min.js"/>'></script>
+    <link href="<c:url value='css/semantic.min.css' />" rel="stylesheet"></link>
+    <link href="<c:url value='css/custom_style.css' />" rel="stylesheet"></link>
 </head>
 <body>
 	<h2>Client Home Page</h2>
         <p>Welcome, ${user.firstName} ${user.lastName}</p>
-        <a href="<c:url value="/logout" />">Logout</a>
+        <a href="<c:url value="/logout" />">Logout</a> | <a href="client/pets">My pets</a>
         <div>
             <c:choose>
                 <c:when test="${not empty issue}">
@@ -21,7 +21,7 @@
                 <p>статус обращения: <b>${issue.status.title}</b></p>
                 <p>Питомцы:</p>
                     <ul>
-                        <c:forEach var="pet" items="${issue.pets}">
+                        <c:forEach var="pet" items="${pets}">
                             <li>${pet.name}</li>                            
                         </c:forEach>
                     </ul>

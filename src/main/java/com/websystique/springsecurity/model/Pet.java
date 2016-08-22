@@ -23,12 +23,36 @@ public class Pet implements Serializable{
     @Column(name="id")
     private Integer id;
     
-    /*@Column(name="owner_id")
-    private Integer ownerId; //владелец животного*/
+    @Column(name="owner_id")
+    private Integer ownerId; //владелец животного
+
+    public Integer getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(Integer ownerId) {
+        this.ownerId = ownerId;
+    }
     
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name="owner_id", referencedColumnName="id")
     private User owner;
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }*/
+
+    public List<Issue> getIssues() {
+        return issues;
+    }
+
+    public void setIssues(List<Issue> issues) {
+        this.issues = issues;
+    }
     
     @Column(name="name")
     private String name;
@@ -44,14 +68,6 @@ public class Pet implements Serializable{
             )
     private List<Issue> issues; //все обращения по животному
 
-    public List<Issue> getUssues() {
-        return issues;
-    }
-
-    public void setUssues(List<Issue> issues) {
-        this.issues = issues;
-    }
-    
     
     public Integer getId() {
         return id;

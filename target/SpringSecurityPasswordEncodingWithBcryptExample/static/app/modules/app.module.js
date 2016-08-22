@@ -11,6 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var welcome_component_1 = require('../components/welcome.component');
+var http_1 = require('@angular/http');
+require('rxjs/add/operator/map');
+require('rxjs/add/operator/toPromise');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -18,7 +21,8 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule],
             declarations: [welcome_component_1.AppComponent],
-            bootstrap: [welcome_component_1.AppComponent]
+            bootstrap: [welcome_component_1.AppComponent],
+            providers: [http_1.HTTP_PROVIDERS]
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);
