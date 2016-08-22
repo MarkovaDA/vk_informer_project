@@ -1,3 +1,6 @@
 <h1>Your pets</h1>
-<button (click)="getPetsFromServer()">get pets</button>
-<strong>The Get result</strong>: <p>{{pets}}</p>
+  <div *ngFor="let pet of pets">
+      <div>Name: {{pet.name}}</div>
+      <div>Description: {{pet.descr}}</div>
+      <hr>
+  </div>

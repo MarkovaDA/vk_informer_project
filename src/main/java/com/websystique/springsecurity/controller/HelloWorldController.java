@@ -64,11 +64,12 @@ public class HelloWorldController {
             User currentUser = getCurrentUser();
             model.addAttribute("user", currentUser);
             //последнее обращение клиента
-            Issue issue = issueService.getLastIssueForClient(currentUser);
-            List<Pet> pets = petService.getPetsByOwner(currentUser.getId());
-            List<Pet> petsByIssue = petService.getPetsByIssue(currentUser.getId(), issue.getId());
-            model.addAttribute("issue", issue);
-            model.addAttribute("pets", petsByIssue);
+            Issue issue = issueService.getLastIssueForClient(currentUser);           
+            if (issue != null) {
+                model.addAttribute("issue", issue);
+                List<Pet> petsByIssue = petService.getPetsByIssue(currentUser.getId(), issue.getId());
+                model.addAttribute("pets", petsByIssue);
+            }
             return new ModelAndView("client");
         }
         

@@ -9,26 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var http_pet_service_1 = require('../services/http.pet.service');
+var pet_service_1 = require('../services/pet.service');
 var AppComponent = (function () {
-    function AppComponent(httpPetService) {
-        this.httpPetService = httpPetService;
+    function AppComponent(petService) {
+        this.petService = petService;
     }
-    AppComponent.prototype.getPetsFromServer = function () {
+    AppComponent.prototype.getPets = function () {
         var _this = this;
-        this.httpPetService.getPets()
-            .subscribe(function (data) { return _this.pets
-            = data; }, function (error) { return console.log("Error HTTP GET Service"); }, // in case of failure show this message
-        function () { console.log(_this.pets[0]); });
+        this.petService
+            .getPets()
+            .then(function (pets) { return _this.pets = pets; })
+            .catch(function (error) { return _this.error = error; });
+    };
+    AppComponent.prototype.ngOnInit = function () {
+        this.getPets();
     };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'pets',
             //template: `<h1>hello</h1>`
             templateUrl: 'app/templates/pets.template.html',
-            providers: [http_pet_service_1.HttpPetService]
         }), 
-        __metadata('design:paramtypes', [http_pet_service_1.HttpPetService])
+        __metadata('design:paramtypes', [pet_service_1.PetService])
     ], AppComponent);
     return AppComponent;
 }());
