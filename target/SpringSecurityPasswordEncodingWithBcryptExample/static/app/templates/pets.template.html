@@ -1,3 +1,37 @@
-<h1>Your pets</h1>
-<button (click)="getPetsFromServer()">get pets</button>
-<strong>The Get result</strong>: <p>{{pets}}</p>
+<div class="ui segment" style="margin: 0 auto; width: 90%;">
+      <a class="ui orange right ribbon label" style="font-size: 1.2em !important;" href="logout">Logout</a>
+      <p></p>
+      <div class="ui grid">
+          <div class="row"> 
+                 <img style="margin: 0 auto;" src = "images/logo.jpg">            
+          </div>
+          <div class="row">
+               
+                <div class="three wide column">
+
+                    <div class="ui compact menu" style="display: inline-block !important;width:100%;">
+                        <a class="item" href="/care_your_pet/client">
+                            <i class="icon home"></i>Home Page
+                        </a>
+                        <a class="item">
+                          <i class="icon alarm"></i> My issues
+                          <!--<div class="floating ui orange label">12</div>-->
+                        </a>
+                    </div>
+                </div>
+                <div class="twelve wide column ui segment orange_top">
+                     <div class="ui right floated segment">
+                        <p>{{current.firstName}} {{current.lastName}}</p>
+                     </div>
+                    <h3 style="text-align: center;">My pets</h3>
+                        <div class="ui divided selection list">
+                            <a class="item" *ngFor="let pet of pets">
+                                <div  class="ui orange horizontal label">Name: </div> {{pet.name}}
+                                <br><br>
+                                <div  class="ui orange horizontal label">Description: </div>{{pet.descr}}
+                            </a>
+                        </div>
+                </div>
+          </div>
+      </div>
+  </div>

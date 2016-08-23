@@ -53,26 +53,27 @@ public class HelloWorldController {
                 //return "index";
 	}
        
-	@RequestMapping(value = {"/admin/", "/admin"}, method = RequestMethod.GET)
+	@RequestMapping(value = { "/admin"}, method = RequestMethod.GET)
 	public String adminPage(ModelMap model) {
 		model.addAttribute("user", getPrincipal());
 		return "admin";
 	}
         
-        @RequestMapping(value={"/client/","/client"}, method=RequestMethod.GET)
+        @RequestMapping(value={"/client"}, method=RequestMethod.GET)
         public ModelAndView welcomeClient(ModelMap model){
-            User currentUser = getCurrentUser();
+           User currentUser = getCurrentUser();
             model.addAttribute("user", currentUser);
             //последнее обращение клиента
-            Issue issue = issueService.getLastIssueForClient(currentUser);
-            List<Pet> pets = petService.getPetsByOwner(currentUser.getId());
-            List<Pet> petsByIssue = petService.getPetsByIssue(currentUser.getId(), issue.getId());
-            model.addAttribute("issue", issue);
-            model.addAttribute("pets", petsByIssue);
+            Issue issue = issueService.getLastIssueForClient(currentUser);           
+            if (issue != null) {
+                model.addAttribute("issue", issue);
+                List<Pet> petsByIssue = petService.getPetsByIssue(currentUser.getId(), issue.getId());
+                model.addAttribute("pets", petsByIssue);
+            }
             return new ModelAndView("client");
         }
         
-        @RequestMapping(value={"/employee/","/employee"}, method=RequestMethod.GET)
+        @RequestMapping(value={"/employee"}, method=RequestMethod.GET)
         public ModelAndView welcomeEmployee(ModelMap model){   
             model.addAttribute("user", getCurrentUser());
             return new ModelAndView("employee");

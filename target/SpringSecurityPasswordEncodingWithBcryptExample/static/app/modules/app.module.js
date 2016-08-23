@@ -10,19 +10,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
+var forms_1 = require('@angular/forms');
 var welcome_component_1 = require('../components/welcome.component');
+var pet_service_1 = require('../services/pet.service');
+var currentuser_service_1 = require('../services/currentuser.service');
 var http_1 = require('@angular/http');
-require('rxjs/add/operator/map');
-require('rxjs/add/operator/toPromise');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule],
+            imports: [platform_browser_1.BrowserModule, http_1.HttpModule, forms_1.FormsModule],
             declarations: [welcome_component_1.AppComponent],
             bootstrap: [welcome_component_1.AppComponent],
-            providers: [http_1.HTTP_PROVIDERS]
+            providers: [pet_service_1.PetService, currentuser_service_1.CurrentUserService]
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

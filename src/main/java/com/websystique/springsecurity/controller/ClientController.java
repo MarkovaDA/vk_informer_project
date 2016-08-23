@@ -3,6 +3,7 @@ package com.websystique.springsecurity.controller;
 
 import com.websystique.springsecurity.model.Pet;
 import com.websystique.springsecurity.model.SessionUser;
+import com.websystique.springsecurity.model.User;
 import com.websystique.springsecurity.service.PetService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,12 @@ public class ClientController {
      public List<Pet> getPets(){
         int userId = SessionUser.getCurrentUser().getId();
         return petService.getPetsByOwner(userId);
+     }
+     
+     @ResponseBody
+     @RequestMapping(value={"/get_currentuser"}, method = RequestMethod.GET)
+     public User getCurrentUser(){
+         return SessionUser.getCurrentUser();
      }
         
 }

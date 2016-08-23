@@ -1,33 +1,39 @@
-import { Component } from '@angular/core';
-import {HttpPetService} from '../services/http.pet.service';
+import { Component, OnInit } from '@angular/core';
+import {PetService} from '../services/pet.service';
+import {CurrentUserService} from '../services/currentuser.service';
+import {Pet} from '../models/pet.model';
+import {User} from '../models/user.model';
 
 @Component({
   selector: 'pets',
-  //template: `<h1>hello</h1>`
   templateUrl: 'app/templates/pets.template.html',
-  providers: [HttpPetService]
 })
 
 
 
-export class AppComponent {
-    pets;     
-
+export class AppComponent implements OnInit{
+    pets: Pet[]; 
+    currentUser: User;  //текущий зарегистрированный пользователь
+    current: User = new User();
+    error: any;
    
-    constructor(private httpPetService: HttpPetService){
+    constructor(private petService:PetService, private currentUserService: CurrentUserService){}
     
+    getPets(): void {
+    this.petService
+        .getPets()
+        .then(pets => this.pets = pets)
+        .catch(error => this.error = error);
     }
-    
-    getPetsFromServer(){
-        
-        this.httpPetService.getPets()
-            .subscribe(
-                data => this.pets 
-                        //= JSON.stringify(data), // put the data returned from the server in our variable
-                        = data,                                
-                error => console.log("Error HTTP GET Service"), // in case of failure show this message
-                () => {console.log(this.pets[0])}
-            );
+    getCurrentUser():void{
+        this.currentUserService
+            .getCurrentUser()
+            .then(currentUser => this.current = currentUser)
+            .catch(error => this.error = error);
+    }
+    ngOnInit():void{
+        this.getPets();
+        this.getCurrentUser();
     }
 }
 

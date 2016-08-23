@@ -12,14 +12,14 @@
 <body>
     <br><br>
     <div class="ui segment" style="margin: 0 auto; width: 90%;">
-        <a class="ui orange right ribbon label" style="font-size: 1.2em !important;" href="entrance">Войти</a>
+        <a class="ui orange right ribbon label" style="font-size: 1.2em !important;" href="entrance">Login</a>
         <p></p>  
         <div class="ui five column grid">
             <div class="row"> 
                  <img style="margin: 0 auto;" src = "<c:url value='images/logo.jpg'/>">            
             </div>
             <div class="row">
-                <div class="select_segment">
+                <div class="ui segment orange_top" style="width:90%; margin:0 auto;">
                     <h3 class="ui header">
                         <img src="<c:url value='images/icon.png'/>" class="ui circular image">
                         О нашей клинике
