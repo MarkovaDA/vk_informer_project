@@ -12,7 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="pets")
@@ -25,15 +27,14 @@ public class Pet implements Serializable{
     
     @Column(name="owner_id")
     private Integer ownerId; //владелец животного
-
+    
     public Integer getOwnerId() {
         return ownerId;
     }
 
     public void setOwnerId(Integer ownerId) {
         this.ownerId = ownerId;
-    }
-    
+    }    
     /*@ManyToOne
     @JoinColumn(name="owner_id", referencedColumnName="id")
     private User owner;
@@ -61,14 +62,24 @@ public class Pet implements Serializable{
     private String descr;
     
          
-    @ManyToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "pets_issues", 
             joinColumns = @JoinColumn(name = "pet_id",referencedColumnName = "id"), 
             inverseJoinColumns = @JoinColumn(name = "issue_id",referencedColumnName = "id")
-            )
+    )
     private List<Issue> issues; //все обращения по животному
-
     
+    /*@OneToMany(fetch = FetchType.EAGER, mappedBy="pet")
+    private List<Image> images; */
+
+    /*public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }*/
+       
     public Integer getId() {
         return id;
     }
@@ -76,14 +87,6 @@ public class Pet implements Serializable{
     public void setId(Integer id) {
         this.id = id;
     }
-
-    /*public Integer getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(Integer ownerId) {
-        this.ownerId = ownerId;
-    }*/
 
     public String getName() {
         return name;

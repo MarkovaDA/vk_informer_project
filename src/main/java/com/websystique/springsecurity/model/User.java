@@ -26,7 +26,7 @@ public class User {
         @GeneratedValue(strategy=GenerationType.SEQUENCE,generator = "pk_user_gen")
         @SequenceGenerator(name = "pk_user_gen", sequenceName = "app_user_seq", allocationSize=1)
         @Column(name="id")
-	private int id;
+	private Integer id;
 
 	@NotEmpty
 	@Column(name="sso_id", unique=true, nullable=false)

@@ -33,7 +33,24 @@ public class Issue implements Serializable{
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "status_id") 
     private IssueStatus status; //статус обращения
+          
+    @OneToOne
+    @JoinColumn(name="employee_id", referencedColumnName="id")
+    private User employee; //сотрудник, которому адресовано обращение
+    
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "client_id") 
+    private User client; //источник обращения - клиент
+     
+         
+    public IssueStatus getStatus() {
+        return status;
+    }
 
+    public void setStatus(IssueStatus status) {
+        this.status = status;
+    }
+    
     public User getEmployee() {
         return employee;
     }
@@ -48,35 +65,6 @@ public class Issue implements Serializable{
 
     public void setClient(User client) {
         this.client = client;
-    }
-         
-  
-    
-    @ManyToOne
-    @JoinColumn(name="employee_id", referencedColumnName="id")
-    private User employee; //сотрудник, которому адресовано обращение - одно обращение может быть адресовано нескольким сотрудникам
-    
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name = "client_id") 
-    private User client; //источник обращения - клиент
-     
-    /*@Column(name = "client_id")
-    private Integer clientId;
-
-    public Integer getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(Integer clientId) {
-        this.clientId = clientId;
-    }*/
-        
-    public IssueStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(IssueStatus status) {
-        this.status = status;
     }
 
     /*public List<Pet> getPets() {
@@ -104,7 +92,5 @@ public class Issue implements Serializable{
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-       
+    }     
 }

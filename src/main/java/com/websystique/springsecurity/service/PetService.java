@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service("petService")
 @Transactional
 public class PetService {
+    
     @Autowired
     private PetDao dao;
     
@@ -22,5 +23,12 @@ public class PetService {
     }   
     public List<Pet> getPetsByIssue(int ownerId, int issueId){
         return dao.getPetsByIssue(ownerId, issueId);
+    }
+    
+    public List<Pet> getAllPets(){
+        return dao.getAllPets();
+    }
+    public void updatePet(Pet pet){
+        dao.updatePet(pet);
     }
 }

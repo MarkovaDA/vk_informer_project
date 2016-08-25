@@ -1,5 +1,10 @@
 package com.websystique.springsecurity.controller;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import com.mongodb.gridfs.GridFSDBFile;
+import com.websystique.springsecurity.dao.MongoDBDao;
+import com.websystique.springsecurity.model.Image;
 import com.websystique.springsecurity.model.Issue;
 import com.websystique.springsecurity.model.Pet;
 import com.websystique.springsecurity.model.SessionUser;
@@ -23,29 +28,121 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.websystique.springsecurity.model.User;
 import com.websystique.springsecurity.model.UserProfile;
+import com.websystique.springsecurity.mongodao.MongoDao;
+import com.websystique.springsecurity.service.ImageService;
 import com.websystique.springsecurity.service.IssueService;
 import com.websystique.springsecurity.service.PetService;
 import com.websystique.springsecurity.service.UserProfileService;
 import com.websystique.springsecurity.service.UserService;
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HelloWorldController {
 
 	@Autowired
-	UserProfileService userProfileService;
+	private UserProfileService userProfileService;
 	
 	@Autowired
-	UserService userService;
+	private UserService userService;
 	
         @Autowired
-        IssueService issueService;
+        private IssueService issueService;
         
         @Autowired
         private PetService petService;
         
+        @Autowired
+        private MongoDao mongoDao;
+        
+        @Autowired
+        private ImageService imageService;
+        
+        @RequestMapping(value = "/mongo", method = RequestMethod.GET)
+        public String mongoTest() throws FileNotFoundException {
+            
+            /*List<Pet> pets = petService.getPetsByOwner(1);
+            String[] images = {"cat1.jpg", "rabbit1.jpg", "sova.jpg", "alligator.jpg", "svinka.jpg", "dog.jpg", "cat2.jpg", "myha.jpg", "krokodile.jpg"};
+            InputStream inputStream;
+            String id;
+            Image petImage;
+            int index = -1;
+            for(String image: images){
+                inputStream = new FileInputStream("/home/darya/pet_clinic_images/" + image); 
+                id = mongoDao.store(inputStream, image, "image/jpg", null);
+                petImage = new Image();
+                petImage.setImageId(id);
+                petImage.setPetId(++index);
+                imageService.updateImage(petImage);            
+            }
+            DBObject metaData = new BasicDBObject();
+            metaData.put("brand", "Audi");
+            metaData.put("model", "Audi A3");
+            metaData.put("description","Audi german automobile manufacturer that designs, engineers, and distributes automobiles");*/                                    
+            return "welcome";
+        }
+        //http://stackoverflow.com/questions/22682566/spring-display-image-in-jsp-from-mongodb
+        
+        @RequestMapping(value="/get_photo", method = RequestMethod.GET)
+        public @ResponseBody void getPhotoByPhotoId(HttpServletRequest request, HttpServletResponse response){
+            GridFSDBFile image = mongoDao.getById("57bf07b434526d101c094b02");
+          
+            InputStream is = image.getInputStream();
+            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+            int nRead;
+            int length = (int)image.getLength();
+            byte[] data = new byte[(int)image.getLength()];
+            try {
+                while ((nRead = is.read(data, 0, data.length)) != -1) {
+                    buffer.write(data, 0, nRead);
+                }
+                buffer.flush();
+                byte[] imagenEnBytes = buffer.toByteArray();
+                response.setHeader("Accept-ranges","bytes");
+                response.setContentType(image.getContentType());
+                response.setContentLength(imagenEnBytes.length);
+                response.setHeader("Expires","0");
+                response.setHeader("Cache-Control","must-revalidate, post-check=0, pre-check=0");
+                response.setHeader("Content-Description","File Transfer");
+                response.setHeader("Content-Transfer-Encoding:","binary");
+                OutputStream out = response.getOutputStream();
+                out.write(imagenEnBytes);
+                out.flush();
+                out.close();
+            } 
+            catch (IOException ex) {
+                Logger.getLogger(HelloWorldController.class.getName()).log(Level.SEVERE, null, ex);
+            }            
+        }
+        @ResponseBody
+        @RequestMapping("/get_photo2")
+        public byte[] getPhoto() throws IOException {
+            GridFSDBFile image = mongoDao.getById("57bf07b434526d101c094b02");
+            InputStream in = image.getInputStream();
+            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+            int nRead;
+            int length = (int)image.getLength();
+            byte[] data = new byte[length];
+            while ((nRead = in.read(data, 0, data.length)) != -1) {
+                    buffer.write(data, 0, nRead);
+            }
+            buffer.flush();
+            byte[] imagenEnBytes = buffer.toByteArray();
+            return imagenEnBytes;
+        }
+                
+        
+                
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public String homePage(ModelMap model) {
 		model.addAttribute("greeting", "Hi, Welcome to mysite");

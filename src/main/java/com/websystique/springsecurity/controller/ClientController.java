@@ -6,6 +6,7 @@ import com.websystique.springsecurity.model.SessionUser;
 import com.websystique.springsecurity.model.User;
 import com.websystique.springsecurity.service.PetService;
 import java.util.List;
+import java.util.function.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +30,8 @@ public class ClientController {
      @RequestMapping(value={"/get_pets"}, method = RequestMethod.GET)
      public List<Pet> getPets(){
         int userId = SessionUser.getCurrentUser().getId();
-        return petService.getPetsByOwner(userId);
+        List<Pet> pets = petService.getPetsByOwner(userId);
+        return pets;
      }
      
      @ResponseBody
