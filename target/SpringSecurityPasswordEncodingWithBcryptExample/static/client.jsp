@@ -34,12 +34,6 @@
                     </div>
                 </div>
                 <!--main content-->
-                <div class="twelve wide column ui segment orange_top">
-                     <div class="ui right floated segment">
-                        <p>${user.firstName} ${user.lastName}</p>
-                     </div>
-                     <h3 style="text-align: center;">Client Home Page</h3>
-                     
                     <div class="ui divided selection list">
                         <c:choose>
                             <c:when test="${not empty issue}">
@@ -61,7 +55,12 @@
                                 </ul>
                             </a>
                             <a class="item">
-                                <textarea rows="5" style="width:100%;">Текст обращения, изъятый из другой базы</textarea>
+                <div class="twelve wide column ui segment orange_top">
+                     <div class="ui right floated segment">
+                        <p>${user.firstName} ${user.lastName}</p>
+                     </div>
+                     <h3 style="text-align: center;">Client Home Page</h3>
+                     
                             </a>
                             </c:when>
                             <c:otherwise>
@@ -72,7 +71,6 @@
                 </div>
             </div>
         </div>
-    </div>	
 </body>
 </html>
 

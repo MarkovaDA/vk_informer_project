@@ -25,6 +25,13 @@ export class AppComponent implements OnInit{
         .then(pets => this.pets = pets)
         .catch(error => this.error = error);
     }
+    }
+}
+
+
+
+
+
     getCurrentUser():void{
         this.currentUserService
             .getCurrentUser()
@@ -34,10 +41,3 @@ export class AppComponent implements OnInit{
     ngOnInit():void{
         this.getPets();
         this.getCurrentUser();
-    }
-}
-
-
-
-
-

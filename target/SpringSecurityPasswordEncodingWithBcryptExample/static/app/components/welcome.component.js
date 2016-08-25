@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var _this = this;
 var core_1 = require('@angular/core');
 var pet_service_1 = require('../services/pet.service');
 var currentuser_service_1 = require('../services/currentuser.service');
@@ -25,17 +26,6 @@ var AppComponent = (function () {
             .then(function (pets) { return _this.pets = pets; })
             .catch(function (error) { return _this.error = error; });
     };
-    AppComponent.prototype.getCurrentUser = function () {
-        var _this = this;
-        this.currentUserService
-            .getCurrentUser()
-            .then(function (currentUser) { return _this.current = currentUser; })
-            .catch(function (error) { return _this.error = error; });
-    };
-    AppComponent.prototype.ngOnInit = function () {
-        this.getPets();
-        this.getCurrentUser();
-    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'pets',
@@ -46,4 +36,15 @@ var AppComponent = (function () {
     return AppComponent;
 }());
 exports.AppComponent = AppComponent;
+getCurrentUser();
+void {
+    this: .currentUserService
+        .getCurrentUser()
+        .then(function (currentUser) { return _this.current = currentUser; })
+        .catch(function (error) { return _this.error = error; })
+};
+ngOnInit();
+void {
+    this: .getPets(),
+    this: .getCurrentUser() };
 //# sourceMappingURL=welcome.component.js.map
