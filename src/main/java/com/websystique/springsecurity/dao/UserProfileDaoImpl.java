@@ -15,7 +15,8 @@ public class UserProfileDaoImpl extends AbstractDao<Integer, UserProfile>impleme
 	@SuppressWarnings("unchecked")
 	public List<UserProfile> findAll(){
 		Criteria crit = createEntityCriteria();
-		crit.addOrder(Order.asc("type"));
+		//crit.addOrder(Order.asc("type"));
+                //вот здесь возникает ошибочка при пустом списке
 		return (List<UserProfile>)crit.list();
 	}
 	

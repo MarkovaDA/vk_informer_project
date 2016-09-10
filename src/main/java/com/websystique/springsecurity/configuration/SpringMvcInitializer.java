@@ -6,7 +6,7 @@ public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServ
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] {HelloWorldConfiguration.class, SpringMongoConfig.class};
+		return new Class[] {HelloWorldConfiguration.class};
 	}
  
 	@Override

@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.websystique.springsecurity</groupId>
-	<artifactId>care_your_pet_task</artifactId>
+	<artifactId>vk_informer</artifactId>
 	<version>1.0.0</version>
 	<packaging>war</packaging>
 
-	<name>pet_clinic</name>
+	<name>vk_informer</name>
 
 	<properties>
 		<springframework.version>4.1.6.RELEASE</springframework.version>
@@ -73,10 +73,10 @@
 		</dependency>
 		<!-- Hibernate validators -->
 		<dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>5.1.3.Final</version>
-        </dependency>		
+                    <groupId>org.hibernate</groupId>
+                    <artifactId>hibernate-validator</artifactId>
+                    <version>5.1.3.Final</version>
+                </dependency>		
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -94,11 +94,10 @@
 			<version>1.2</version>
 		</dependency>                
                 <dependency>
-                    <groupId>org.postgresql</groupId>
-                    <artifactId>postgresql</artifactId>
-                    <version>9.4-1206-jdbc42</version>
-                </dependency>
-                
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                    <version>${mysql.connector.version}</version>
+                </dependency>                
                  <!-- Jackson -->
                 <dependency>
                     <groupId>com.fasterxml.jackson.core</groupId>
@@ -117,30 +116,17 @@
                     <version>2.8.1</version>
                 </dependency>
                 
-                <!-- mongodb driver-->
-                <dependency>
-                    <groupId>org.mongodb</groupId>
-                    <artifactId>mongo-java-driver</artifactId>
-                    <version>3.3.0</version>
-                </dependency>
-                <!--spring data mongodb-->
-                <dependency>
-                    <groupId>org.springframework.data</groupId>
-                    <artifactId>spring-data-mongodb</artifactId>
-                    <version>1.9.0.RELEASE</version>
-                </dependency>
-                
                 <dependency>
                     <groupId>cglib</groupId>
                     <artifactId>cglib</artifactId>
                     <version>3.2.4</version>
                 </dependency>
-	 <dependency>
-	  <groupId>org.apache.tomcat.embed</groupId>
-	  <artifactId>tomcat-embed-core</artifactId>
-	  <version>8.0.33</version>
-	  <type>jar</type>
-	 </dependency>
+                <dependency>
+                 <groupId>org.apache.tomcat.embed</groupId>
+                 <artifactId>tomcat-embed-core</artifactId>
+                 <version>8.0.33</version>
+                 <type>jar</type>
+                </dependency>
 	</dependencies>
 
 	<build>
@@ -185,4 +171,5 @@
 		
 		<finalName>SpringSecurityPasswordEncodingWithBcryptExample</finalName>
 	</build>
+    <description>система рассылки оповещений студентам через социальную сеть "Вконтакте"</description>
 </project>

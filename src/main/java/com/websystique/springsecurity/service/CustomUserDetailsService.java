@@ -1,5 +1,6 @@
 package com.websystique.springsecurity.service;
 
+import com.websystique.springsecurity.model.State;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,20 +22,22 @@ public class CustomUserDetailsService implements UserDetailsService{
 	@Autowired
 	private UserService userService;
 	
+        //получение информации об авторизованном пользователе
 	@Transactional(readOnly=true)
-	public UserDetails loadUserByUsername(String ssoId)
+	public UserDetails loadUserByUsername(String login)
 			throws UsernameNotFoundException {
-		User user = userService.findBySso(ssoId);
+		User user = userService.findByLogin(login);
+                System.out.println("Login: " +login);
 		System.out.println("User : "+user);
 		if(user==null){
 			System.out.println("User not found");
 			throw new UsernameNotFoundException("Username not found"); 
 		}
-			return new org.springframework.security.core.userdetails.User(user.getSsoId(), user.getPassword(), 
-				 user.getState().equals("Active"), true, true, true, getGrantedAuthorities(user));
+			return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), 
+				 user.getState().equals("ACTIVE"), true, true, true, getGrantedAuthorities(user));
 	}
 
-	
+	//получение всех прав пользователя
 	private List<GrantedAuthority> getGrantedAuthorities(User user){
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		

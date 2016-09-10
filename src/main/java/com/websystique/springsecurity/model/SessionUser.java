@@ -1,7 +1,6 @@
 package com.websystique.springsecurity.model;
 
 
-
 public class SessionUser {
     
     private static User currentUser;

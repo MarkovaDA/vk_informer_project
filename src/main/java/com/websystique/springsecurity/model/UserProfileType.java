@@ -1,8 +1,8 @@
 package com.websystique.springsecurity.model;
 
 public enum UserProfileType {
-	USER("USER"),
-	DBA("DBA"),
+	
+        USER("LECT"),
 	ADMIN("ADMIN");
 	
 	String userProfileType;

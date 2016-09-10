@@ -36,7 +36,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-	    return new BCryptPasswordEncoder();
+	    return new BCryptPasswordEncoder(); //алгоритм шифорвания пароля
 	}
 	
 	
@@ -60,12 +60,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	  http.authorizeRequests()
 	  	.antMatchers("/", "/home").permitAll()
 	  	.antMatchers("/admin/**","/newuser").access("hasRole('ADMIN')")
-	  	.antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')")
-                .antMatchers("/client","/client/**").hasRole("CLIENT")
-                .antMatchers("/employee","/employee/**").hasRole("EMPLOYEE")
-                .antMatchers("/entrance","/entrance/**").hasAnyRole("ADMIN","CLIENT","EMPLOYEE") 
+	  	//.antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')")
+                //.antMatchers("/client","/client/**").hasRole("CLIENT")
+                //.antMatchers("/employee","/employee/**").hasRole("EMPLOYEE")
+                .antMatchers("/user/**").access("hasRole('LECT')")
+                .antMatchers("/entrance","/entrance/**").hasAnyRole("ADMIN","LECT") 
 	  	.and().formLogin().loginPage("/login")
-	  	.usernameParameter("ssoId").passwordParameter("password")
+	  	.usernameParameter("login").passwordParameter("password")
 	  	.and().csrf()
 	  	.and().exceptionHandling().accessDeniedPage("/Access_Denied");  
 	}

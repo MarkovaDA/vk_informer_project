@@ -3,23 +3,20 @@ package com.websystique.springsecurity.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="user_profile")
+@Table(name="profile")
 public class UserProfile {
 
 	@Id 
-        @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "pk_type_gen")
-        @SequenceGenerator(name = "pk_type_gen", sequenceName = "user_profile_seq", allocationSize=1)
+        @GeneratedValue      
 	@Column(name="id")
         private int id;	
 
-	@Column(name="type", length=15, unique=true, nullable=false)
-	private String type = UserProfileType.USER.getUserProfileType();
+	@Column(name="type", unique=true, nullable=false)
+	private String type; //UserProfileType.USER.getUserProfileType();
 	
 	public int getId() {
 		return id;

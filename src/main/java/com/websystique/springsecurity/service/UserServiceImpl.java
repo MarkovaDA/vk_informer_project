@@ -28,8 +28,8 @@ public class UserServiceImpl implements UserService{
 		return dao.findById(id);
 	}
 
-	public User findBySso(String sso) {
-		return dao.findBySSO(sso);
+	public User findByLogin(String login) {
+		return dao.findByLogin(login);
 	}
 	
 }
