@@ -24,7 +24,6 @@ import com.websystique.springsecurity.service.UserProfileService;
 import com.websystique.springsecurity.service.UserService;
 import java.util.Iterator;
 import java.util.Set;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
