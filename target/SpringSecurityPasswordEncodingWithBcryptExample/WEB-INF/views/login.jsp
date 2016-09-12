@@ -10,10 +10,10 @@
 	</head>
         <style>
             .ui.input{
-                margin: 2px;
+                margin: 4px;
             }
             .ui.input:hover{
-                box-shadow: 0px 0px 3px 0px lavender;
+               box-shadow: 0px 0px 5px 0px lavender;
             }
             .ui input{
                
