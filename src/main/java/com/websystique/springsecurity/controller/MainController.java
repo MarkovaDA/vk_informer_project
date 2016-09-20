@@ -1,5 +1,9 @@
 package com.websystique.springsecurity.controller;
 
+import com.websystique.springsecurity.dto.CourseDTO;
+import com.websystique.springsecurity.dto.FacultyDTO;
+import com.websystique.springsecurity.model.Course;
+import com.websystique.springsecurity.model.Faculty;
 import com.websystique.springsecurity.model.SessionUser;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.websystique.springsecurity.model.User;
 import com.websystique.springsecurity.model.UserProfile;
+import com.websystique.springsecurity.service.CourseService;
+import com.websystique.springsecurity.service.FacultyService;
 import com.websystique.springsecurity.service.UserProfileService;
 import com.websystique.springsecurity.service.UserService;
 import java.util.Iterator;
@@ -34,10 +40,17 @@ public class MainController {
 	
 	@Autowired
 	private UserService userService;
+        
+        @Autowired
+        private FacultyService facultyService;
+        
+        @Autowired
+        private CourseService courseService;
 	
             
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public String homePage(ModelMap model) {
+                List<CourseDTO> facultets  = courseService.getCoursesByFacultyId(1);
 		model.addAttribute("greeting", "Hi, Welcome to mysite");
 		return "welcome";
 	}
@@ -170,5 +183,9 @@ public class MainController {
 	public List<UserProfile> initializeProfiles() {
 		return userProfileService.findAll();
 	}
+        //у факультета получать все активные курсы,у курс - группы
+        //по группе извлекать студентов легко, с одним условием
+        //по курсу - сджойнить с группой и курсом
+        //по факультету - сджойнить с группой,курсом и факультетом
 
 }

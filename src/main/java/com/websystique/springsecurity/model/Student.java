@@ -49,6 +49,7 @@ public class Student {
     @JoinColumn(name="group_id")
     private Group group;//группа, которой принадлжеит студент
 
+    
     public Group getGroup() {
         return group;
     }

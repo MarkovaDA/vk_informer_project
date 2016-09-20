@@ -3,8 +3,11 @@
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/dao/UserProfileDaoImpl.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/model/Specialty.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/service/UserService.java
+/home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/dao/CourseDao.java
+/home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/dto/FacultyDTO.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/model/SessionUser.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/model/Group.java
+/home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/dao/FacultyDao.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/service/UserProfileServiceImpl.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/configuration/HibernateConfiguration.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/model/UserProfile.java
@@ -12,9 +15,12 @@
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/dao/AbstractDao.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/configuration/SecurityWebApplicationInitializer.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/model/Course.java
+/home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/dto/CourseDTO.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/configuration/SpringMvcInitializer.java
+/home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/service/FacultyService.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/model/Faculty.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/model/Student.java
+/home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/service/CourseService.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/service/UserServiceImpl.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/model/State.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/configuration/RoleToUserProfileConverter.java
