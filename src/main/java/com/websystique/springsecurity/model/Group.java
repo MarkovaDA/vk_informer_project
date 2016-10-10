@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="groups")
 public class Group {
-   //id, spec_id, course_id, number
+
     @Id 
     @GeneratedValue
     @Column(name="id")
@@ -28,19 +28,21 @@ public class Group {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
     private Course course; 
-
+    
+    
     public Course getCourse() {
         return course;
     }
 
     public void setCourse(Course course) {
         this.course = course;
-    }         
+    }
+  
     /*@Column(name="course_id")
     private Integer courseId;*/
     
     @Column(name="number")
-    private Integer number;
+    private String number;
     
     @OneToMany(mappedBy = "group", fetch = FetchType.EAGER)
     private Set<Student> students;
@@ -76,11 +78,11 @@ public class Group {
         this.courseId = courseId;
     }*/
 
-    public Integer getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumber(String number) {
         this.number = number;
     }
     

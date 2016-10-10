@@ -8,6 +8,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script type="text/javascript" src='<c:url value="static_resources/js/semantic.min.js"/>'></script>
         <script type="text/javascript" src='<c:url value="static_resources/js/customer.select.js"/>'></script>
+        <script type="text/javascript" src='<c:url value="static_resources/js/data.injection.js"/>'></script>
         <link href="<c:url value='static_resources/css/semantic.min.css' />" rel="stylesheet"></link>
         <link href="<c:url value='static_resources/css/customer.select.css' />" rel="stylesheet"></link>
     </head>
@@ -27,26 +28,35 @@
                 </div>
             </div>
                 <div class="eight wide column" style="text-align: left !important;">
+                    <!-- выбор факультета-->
+                    <div class="wrapper_select" id="select_faculties">
+                        <div class="select_header">
+                            <input type="text" placeholder="выберите факультет">
+                            <button class="mini ui icon violet basic button">
+                                <i class="angle down icon"></i>
+                            </button>
+                        </div>
+                        <div class="select_items">
+                            <c:forEach var="faculty" items="${faculties}">				
+                                <div fac_id="${faculty.id}">${faculty.title}</div>                              
+                            </c:forEach>
+                        </div>
+                    </div>
+                    <br>
                     <!-- выбор курса-->
-                    <div class="wrapper_select">
+                    <div class="wrapper_select" id="select_courses">
                         <div class="select_header">
                             <input type="text" placeholder="выберите курс">
                             <button class="mini ui icon violet basic button">
                                 <i class="angle down icon"></i>
                             </button>
                         </div>
-                        <div class="select_items">
-                            <div>1 курс</div>
-                            <div>2 курс</div>
-                            <div>3 курс</div>
-                            <div>4 курс</div>
-                            <div>5 курс (1 курс магистратуры)</div>
-                            <div>6 курс (2 курс магистратуры)</div>
-                       </div>
+                        <div class="select_items">    
+                        </div>
                     </div>
                     <br>
                     <!--выбор группы-->
-                    <div class="wrapper_select">
+                    <div class="wrapper_select" id="selected_groups">
                         <div class="select_header">
                             <input type="text" placeholder="выберите группу">
                             <button class="mini ui icon violet basic button">
@@ -54,11 +64,7 @@
                             </button>
                         </div>
                         <div class="select_items">
-                            <div>1 группа</div>
-                            <div>2 группа</div>
-                            <div>3 группа</div>
-                            <div>4 группа</div>
-                       </div>
+                        </div>
                     </div>
                     <br>
                     <div class="ui checkbox">

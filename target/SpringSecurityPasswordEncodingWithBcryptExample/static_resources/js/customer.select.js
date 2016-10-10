@@ -11,11 +11,12 @@
     
     $('.select_items div').click(function()
     {
-        //$('.select_items').slideUp(100); 
         $(this).parent().slideUp(100);
-        
-        //$('.select_header input').val($(this).text());
         $(this).parent().parent().find('input').val($(this).text());
+    });
+    
+    $('.select_items').mouseleave(function(){
+        $(this).fadeOut(100);
     });
     
     $('.select_header input').keyup(function(){

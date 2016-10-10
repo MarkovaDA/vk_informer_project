@@ -34,7 +34,8 @@ border-top:none;
 }
 .select_items{
 border: 1px solid silver;
-width: 214px;
+min-width: 214px;
+width: auto;
 color:grey;
 height: 136pх;
 min-height: 34px;
@@ -54,6 +55,7 @@ background: white;
 .select_items div {
     z-index: 1000;
     background: white;
+    width: auto;
 }
 textarea:focus{
     outline: none;

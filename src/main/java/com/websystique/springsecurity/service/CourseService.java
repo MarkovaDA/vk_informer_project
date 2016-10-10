@@ -24,6 +24,7 @@ public class CourseService {
     @Autowired
     private CourseDao dao;
     
+    //получение курсов 
     public List<CourseDTO> getCoursesByFacultyId(int id){
         List<Course> courses = dao.getCoursesByFacultyId(id);
         List<CourseDTO> coursesDTO = new ArrayList<>();

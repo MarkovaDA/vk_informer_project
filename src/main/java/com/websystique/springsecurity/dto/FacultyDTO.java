@@ -11,6 +11,7 @@ public class FacultyDTO {
     
     private Integer id;
     private String title;
+    //id, title
     private Set<CourseDTO> courses = new HashSet<>();
     
     public FacultyDTO(Faculty faculty){

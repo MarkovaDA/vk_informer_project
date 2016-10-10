@@ -4,6 +4,7 @@ import com.websystique.springsecurity.dto.CourseDTO;
 import com.websystique.springsecurity.dto.FacultyDTO;
 import com.websystique.springsecurity.model.Course;
 import com.websystique.springsecurity.model.Faculty;
+import com.websystique.springsecurity.model.Group;
 import com.websystique.springsecurity.model.SessionUser;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +27,7 @@ import com.websystique.springsecurity.model.User;
 import com.websystique.springsecurity.model.UserProfile;
 import com.websystique.springsecurity.service.CourseService;
 import com.websystique.springsecurity.service.FacultyService;
+import com.websystique.springsecurity.service.GroupService;
 import com.websystique.springsecurity.service.UserProfileService;
 import com.websystique.springsecurity.service.UserService;
 import java.util.Iterator;
@@ -46,6 +48,9 @@ public class MainController {
         
         @Autowired
         private CourseService courseService;
+        
+        @Autowired
+        private GroupService groupService;
 	
             
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
@@ -64,6 +69,7 @@ public class MainController {
         @RequestMapping(value = { "/user"}, method = RequestMethod.GET)
 	public String userPage(ModelMap model) {
 		model.addAttribute("user", getPrincipal());
+                model.addAttribute("faculties", facultyService.getFaculties());
 		return "user";
 	}
       
@@ -139,7 +145,12 @@ public class MainController {
             SessionUser.setCurrentUser(current);
             Set<UserProfile> roles = current.getUserProfiles();
             Iterator<UserProfile> iterator = roles.iterator();
-           
+            
+            /*FacultyDTO faculty = facultyService.getFacultyById(1);            
+            List<CourseDTO> course = courseService.getCoursesByFacultyId(1);*/            
+            List<Group> groups = groupService.getGroupsByCourseId(1); 
+            //прогрузить в формочки
+            
             if (roles.size() >= 1){
                 String roleName = iterator.next().getType().toLowerCase(); //смотрим по первому типу роли
                 if (roleName.endsWith("lect"))
@@ -147,10 +158,6 @@ public class MainController {
                 if (roleName.endsWith("admin"))
                     return new ModelAndView("redirect:/admin");
             }
-            //для человека с несколькими ролями сделать страничку,
-            //которая позволит ему и править пользователей и отправлять сообщения
-            //например,просто в его личном кабинете сделать ссылки на /user и на /admin
-            //которым дать доступ
             return new ModelAndView("redirect:/");
         }	
 	private String getPrincipal(){
@@ -178,14 +185,8 @@ public class MainController {
 	}
 	
 	
-	
 	@ModelAttribute("roles")
 	public List<UserProfile> initializeProfiles() {
 		return userProfileService.findAll();
 	}
-        //у факультета получать все активные курсы,у курс - группы
-        //по группе извлекать студентов легко, с одним условием
-        //по курсу - сджойнить с группой и курсом
-        //по факультету - сджойнить с группой,курсом и факультетом
-
 }

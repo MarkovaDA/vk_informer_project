@@ -12,14 +12,17 @@ com/websystique/springsecurity/model/User.class
 com/websystique/springsecurity/dao/UserProfileDaoImpl.class
 com/websystique/springsecurity/model/Group.class
 com/websystique/springsecurity/model/SessionUser.class
+com/websystique/springsecurity/service/GroupService.class
 com/websystique/springsecurity/dto/FacultyDTO.class
 com/websystique/springsecurity/configuration/SecurityConfiguration.class
 com/websystique/springsecurity/util/QuickPasswordEncodingGenerator.class
 com/websystique/springsecurity/service/UserService.class
 com/websystique/springsecurity/service/UserProfileServiceImpl.class
+com/websystique/springsecurity/dao/GroupDao.class
 com/websystique/springsecurity/service/CourseService.class
 com/websystique/springsecurity/configuration/RoleToUserProfileConverter.class
 com/websystique/springsecurity/dao/UserDaoImpl.class
+com/websystique/springsecurity/controller/ApiController.class
 com/websystique/springsecurity/service/CustomUserDetailsService.class
 com/websystique/springsecurity/model/Faculty.class
 com/websystique/springsecurity/dao/UserProfileDao.class
