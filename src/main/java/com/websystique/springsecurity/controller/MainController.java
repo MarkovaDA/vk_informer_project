@@ -106,7 +106,12 @@ public class MainController {
 		model.addAttribute("user", user);
 		return "newuser";
 	}
-
+        
+        //vechicles.client
+        //accounts.comments
+        
+        
+        
 	/*
 	 * This method will be called on form submission, handling POST request It
 	 * also validates the user input
@@ -147,8 +152,7 @@ public class MainController {
             Iterator<UserProfile> iterator = roles.iterator();
             
             /*FacultyDTO faculty = facultyService.getFacultyById(1);            
-            List<CourseDTO> course = courseService.getCoursesByFacultyId(1);*/            
-            List<Group> groups = groupService.getGroupsByCourseId(1); 
+            List<CourseDTO> course = courseService.getCoursesByFacultyId(1);*/
             //прогрузить в формочки
             
             if (roles.size() >= 1){

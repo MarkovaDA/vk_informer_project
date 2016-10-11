@@ -25,6 +25,7 @@ com/websystique/springsecurity/dao/UserDaoImpl.class
 com/websystique/springsecurity/controller/ApiController.class
 com/websystique/springsecurity/service/CustomUserDetailsService.class
 com/websystique/springsecurity/model/Faculty.class
+com/websystique/springsecurity/dto/GroupDTO.class
 com/websystique/springsecurity/dao/UserProfileDao.class
 com/websystique/springsecurity/configuration/HibernateConfiguration.class
 com/websystique/springsecurity/service/UserProfileService.class

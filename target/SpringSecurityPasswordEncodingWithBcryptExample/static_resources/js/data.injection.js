@@ -22,7 +22,18 @@ $(document).ready(function(){
                 $(this).parent().parent().find('input').val($(this).text());
 
                 $.get("api/get_groups?course_id="+parseInt($(this).attr("course_id")), function(data){
-                    console.log(data);
+
+                    for(var j in data){
+                        var group = data[j];
+                        var option = '<div group_id=' + group.id + '>' + group.number + '</div>';
+                        $('#selected_groups .select_items').append(option);
+                        
+                    }
+                    $('#selected_groups .select_items div').click(function(){
+                            $(this).parent().slideUp(100);
+                            $(this).parent().parent().find('input').val($(this).text());
+                        }
+                    );
                 });
             });
         });

@@ -5,7 +5,7 @@ import com.websystique.springsecurity.model.Course;
 import java.sql.Date;
 
 
-public class CourseDTO {
+public class CourseDTO implements Comparable{
     private Integer id;
     private Date  foundationDate;
     private Integer number;
@@ -42,6 +42,11 @@ public class CourseDTO {
 
     public void setNumber(Integer number) {
         this.number = number;
+    }
+
+    @Override
+    public int compareTo(Object courseDTO) {
+        return this.number.compareTo(((CourseDTO)courseDTO).getNumber()); 
     }
     
     

@@ -1,6 +1,7 @@
 package com.websystique.springsecurity.controller;
 
 import com.websystique.springsecurity.dto.CourseDTO;
+import com.websystique.springsecurity.dto.GroupDTO;
 import com.websystique.springsecurity.model.Group;
 import com.websystique.springsecurity.service.CourseService;
 import com.websystique.springsecurity.service.FacultyService;
@@ -31,8 +32,7 @@ public class ApiController {
     }
     
     @RequestMapping(value = { "/get_groups" }, method = RequestMethod.GET)
-    public List<Group> getGroups(@RequestParam("course_id")Integer courseId){
-        //принять в dto, отладить 
+    public List<GroupDTO> getGroups(@RequestParam("course_id")Integer courseId){
         return groupService.getGroupsByCourseId(courseId);
     }
     
