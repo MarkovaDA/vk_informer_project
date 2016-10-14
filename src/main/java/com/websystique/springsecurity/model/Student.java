@@ -24,8 +24,8 @@ public class Student {
     private Integer id;
     
     @NotEmpty
-    @Column(name="vk_id", unique=true, nullable=false)
-    private String vk_id;
+    @Column(name="uid", unique=true, nullable=false)
+    private String uid;
     
     @NotEmpty
     @Column(name="first_name", nullable=false)
@@ -49,7 +49,10 @@ public class Student {
     @JoinColumn(name="group_id")
     private Group group;//группа, которой принадлжеит студент
 
-    
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
     public Group getGroup() {
         return group;
     }
@@ -66,13 +69,11 @@ public class Student {
         this.id = id;
     }
     
-    public String getVk_id() {
-        return vk_id;
+    public String getUid() {
+        return uid;
     }
 
-    public void setVk_id(String vk_id) {
-        this.vk_id = vk_id;
-    }
+  
 
     public String getFirstName() {
         return firstName;

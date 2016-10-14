@@ -6,6 +6,7 @@
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/service/UserService.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/dao/CourseDao.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/dto/FacultyDTO.java
+/home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/service/StudentService.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/model/SessionUser.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/model/Group.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/dao/FacultyDao.java
@@ -15,6 +16,7 @@
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/model/UserProfile.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/service/UserProfileService.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/dao/AbstractDao.java
+/home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/dto/StudentDTO.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/dao/GroupDao.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/configuration/SecurityWebApplicationInitializer.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/model/Course.java
@@ -34,5 +36,6 @@
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/controller/MainController.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/service/CustomUserDetailsService.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/configuration/SecurityConfiguration.java
+/home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/dao/StudentDao.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/dto/GroupDTO.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/model/User.java

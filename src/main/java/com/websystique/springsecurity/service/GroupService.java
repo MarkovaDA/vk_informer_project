@@ -6,7 +6,6 @@ import com.websystique.springsecurity.dto.GroupDTO;
 import com.websystique.springsecurity.model.Group;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

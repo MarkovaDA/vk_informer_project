@@ -1,7 +1,7 @@
 
 package com.websystique.springsecurity.dao;
 
-import com.websystique.springsecurity.model.Faculty;
+
 import com.websystique.springsecurity.model.Group;
 import java.util.List;
 import org.hibernate.criterion.Restrictions;
