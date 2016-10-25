@@ -65,7 +65,7 @@ public class HibernateConfiguration {
         //dataSource.setUsername(environment.getRequiredProperty("jdbc.username"));
         //dataSource.setPassword(environment.getRequiredProperty("jdbc.password"));
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost/vk_informer_db");
+        dataSource.setUrl("jdbc:mysql://localhost/vk_informer_db?useUnicode=true&amp;connectionCollation=utf8_general_ci&amp;characterSetResults=utf8&amp;characterEncoding=utf-8");
         dataSource.setUsername("root");
         dataSource.setPassword("1234");
         return dataSource;

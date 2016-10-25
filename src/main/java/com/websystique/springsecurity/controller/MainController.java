@@ -28,6 +28,7 @@ import com.websystique.springsecurity.model.UserProfile;
 import com.websystique.springsecurity.service.CourseService;
 import com.websystique.springsecurity.service.FacultyService;
 import com.websystique.springsecurity.service.GroupService;
+import com.websystique.springsecurity.service.StudentService;
 import com.websystique.springsecurity.service.UserProfileService;
 import com.websystique.springsecurity.service.UserService;
 import java.util.Iterator;
@@ -51,7 +52,17 @@ public class MainController {
         
         @Autowired
         private GroupService groupService;
+        
+        @Autowired
+        private StudentService studentService;
 	
+        @RequestMapping(value={"/test_service/","/test_service"}, method=RequestMethod.GET)
+        public void testService(){
+            List<String> list1 = facultyService.getUidsByFaculty(1);
+            List<String> list2 = courseService.getUidsByCourse(1);
+            List<String> list3 = studentService.getStudentsByGroupId(8);
+        }
+        
             
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public String homePage(ModelMap model) {

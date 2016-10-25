@@ -11,6 +11,8 @@ import com.google.gson.reflect.TypeToken;
 import com.websystique.springsecurity.dto.CourseDTO;
 import com.websystique.springsecurity.dto.GroupDTO;
 import com.websystique.springsecurity.dto.StudentDTO;
+import com.websystique.springsecurity.model.Filter;
+import com.websystique.springsecurity.model.Student;
 import com.websystique.springsecurity.service.CourseService;
 import com.websystique.springsecurity.service.FacultyService;
 import com.websystique.springsecurity.service.GroupService;
@@ -59,13 +61,13 @@ public class ApiController {
 
     
     
-    @RequestMapping(value = { "/get_students" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/add_students" }, method = RequestMethod.GET)
     public String getMembers(){
-        studentService.saveMultipleStudents();
+
         StringBuffer response = null;
-        List<StudentDTO> students = new ArrayList<>();
+    
         try {
-            String url = "https://api.vk.com/method/groups.getMembers?group_id=csf2013&count=3&offset=0&fields=first_name,last_name";
+            String url = "https://api.vk.com/method/groups.getMembers?group_id=csf2013&count=1000&offset=0&fields=first_name,last_name";
             URL obj = new URL(url);
             HttpURLConnection conn = (HttpURLConnection)obj.openConnection();
             conn.setRequestMethod("GET");
@@ -73,7 +75,7 @@ public class ApiController {
 
             if (conn.getResponseCode() == HttpURLConnection.HTTP_OK){
                 BufferedReader in = new BufferedReader(
-		        new InputStreamReader(conn.getInputStream()));
+		        new InputStreamReader(conn.getInputStream(), "UTF-8"));
 		String inputLine;
 		response = new StringBuffer();
 
@@ -95,8 +97,10 @@ public class ApiController {
                 }*/
                 int commaIndex = response.toString().indexOf("[");
                 String responseStr = (response.toString()).substring(commaIndex, response.length() - 2);
-                Type listType = new TypeToken<List<StudentDTO>>() {}.getType();
-                List<StudentDTO> usersList = new Gson().fromJson(responseStr, listType);          
+                Type listType = new TypeToken<List<Student>>() {}.getType();
+
+                List<Student> students = new Gson().fromJson(responseStr, listType);          
+                studentService.saveMultipleStudents(students);
             }            
         } 
         catch (IOException ex) {
@@ -105,4 +109,18 @@ public class ApiController {
         return response.toString();
     } 
     
+    //получает людей,которым расслылает сообщения
+    @RequestMapping(value = { "/send_info" }, method = RequestMethod.POST)
+    public void sendInfoToPeople(Filter filter){
+        
+        if (filter.getGroup() != null){
+            studentService.getStudentsByGroupId(filter.getGroup());
+        }
+        else if (filter.getCourse() !=  null){
+            courseService.getUidsByCourse(filter.getCourse());
+        }
+        else if (filter.getFaculty() != null){
+            facultyService.getUidsByFaculty(filter.getFaculty());
+        }        
+    }
 }

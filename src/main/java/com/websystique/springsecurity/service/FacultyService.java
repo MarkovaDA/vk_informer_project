@@ -27,4 +27,8 @@ public class FacultyService {
         faculties.forEach(item -> {facultiesDto.add(new FacultyDTO(item));});
         return facultiesDto;
     }
+    
+    public List<String> getUidsByFaculty(int facultyId){
+        return dao.getStudentsFromFaculty(facultyId);
+    }
 }

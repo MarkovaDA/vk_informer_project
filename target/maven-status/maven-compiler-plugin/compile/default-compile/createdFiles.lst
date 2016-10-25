@@ -20,6 +20,7 @@ com/websystique/springsecurity/dto/StudentDTO.class
 com/websystique/springsecurity/configuration/SecurityConfiguration.class
 com/websystique/springsecurity/util/QuickPasswordEncodingGenerator.class
 com/websystique/springsecurity/service/UserService.class
+com/websystique/springsecurity/model/Transliteration.class
 com/websystique/springsecurity/service/UserProfileServiceImpl.class
 com/websystique/springsecurity/dao/GroupDao.class
 com/websystique/springsecurity/service/CourseService.class

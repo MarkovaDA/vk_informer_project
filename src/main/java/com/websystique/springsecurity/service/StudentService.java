@@ -5,6 +5,7 @@ import com.websystique.springsecurity.dao.GroupDao;
 import com.websystique.springsecurity.dao.StudentDao;
 import com.websystique.springsecurity.dto.GroupDTO;
 import com.websystique.springsecurity.model.Group;
+import com.websystique.springsecurity.model.Student;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -19,7 +20,19 @@ public class StudentService {
     @Autowired
     private StudentDao dao;
     
-    public void saveMultipleStudents(){
-        dao.saveMultipleStudents();
+    public List<String> getStudentsByGroupId(Integer groupId){
+        return dao.getStudentsByGroupId(groupId);
+    }
+    
+    public Student getCaptainOfGroup(Integer groupId){
+        return dao.getCaptainOfGroup(groupId);
+    }
+    
+    public void saveMultipleStudents(List<Student> students){
+        dao.saveMultipleStudents(students);
+    }
+   
+    public void saveMultipleStudents2(List<Student> students){
+        dao.saveMultipleStudents2(students);
     }
 }

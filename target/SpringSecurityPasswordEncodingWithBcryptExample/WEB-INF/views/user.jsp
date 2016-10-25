@@ -31,7 +31,7 @@
                     <!-- выбор факультета-->
                     <div class="wrapper_select" id="select_faculties">
                         <div class="select_header">
-                            <input type="text" placeholder="выберите факультет">
+                            <input type="text" placeholder="выберите факультет" id="faculty_value">
                             <button class="mini ui icon violet basic button">
                                 <i class="angle down icon"></i>
                             </button>
@@ -46,7 +46,7 @@
                     <!-- выбор курса-->
                     <div class="wrapper_select" id="select_courses">
                         <div class="select_header">
-                            <input type="text" placeholder="выберите курс">
+                            <input type="text" placeholder="выберите курс" id="course_value">
                             <button class="mini ui icon violet basic button">
                                 <i class="angle down icon"></i>
                             </button>
@@ -58,7 +58,7 @@
                     <!--выбор группы-->
                     <div class="wrapper_select" id="selected_groups">
                         <div class="select_header">
-                            <input type="text" placeholder="выберите группу">
+                            <input type="text" placeholder="выберите группу" id="groupe_id">
                             <button class="mini ui icon violet basic button">
                                 <i class="angle down icon"></i>
                             </button>
@@ -71,18 +71,23 @@
                         <input type="checkbox">
                         <label>Отправить только старосте</label>
                     </div>
-                    <br> <br>
-                    <div class="ui checkbox">
-                        <input type="checkbox">
-                        <label>Добавить подпись</label>                      
-                    </div>
-                    <br><br>
-                    <button class="ui violet button">добавить</button>
+                    <br>        
+                    <!--для визуального отображения фильтров-->
+                    <div id="filters">                        
+                    </div>  
+                    <br>                  
+                    <button class="ui violet button" id="add_filter_btn">добавить</button>
+                    
                 </div>
                 <!--вторая колонка-->
                 <div class="eight wide column" style="text-align: left !important;">
                     <textarea style="width:100%;" rows="9"></textarea>
-                    <br>
+                    <br>                    
+                    <div class="ui checkbox">
+                        <input type="checkbox">
+                        <label>Добавить подпись</label>                      
+                    </div>                   
+                    <br><br>
                     <button class="ui violet button">отправить</button>
                     <button class="ui violet button" style="float:right !important;">прикрепить файл</button>
                 </div>                                    

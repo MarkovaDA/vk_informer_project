@@ -31,4 +31,8 @@ public class CourseService {
         Collections.sort(coursesDTO);
         return coursesDTO;          
     }
+    
+    public List<String> getUidsByCourse(int courseId){
+        return dao.getStudentsFromCourse(courseId);
+    }
 }

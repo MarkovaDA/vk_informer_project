@@ -3,7 +3,12 @@ package com.websystique.springsecurity.dao;
 
 
 import com.websystique.springsecurity.model.Course;
+import com.websystique.springsecurity.model.Group;
+import com.websystique.springsecurity.model.Student;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.DistinctRootEntityResultTransformer;
 import org.springframework.stereotype.Repository;
@@ -17,7 +22,22 @@ public class CourseDao extends AbstractDao<Integer, Course>{
                 .setResultTransformer(DistinctRootEntityResultTransformer.INSTANCE)
                 .list();
     }
-    //список групп по id-курса
-    //только непонятно - куда добавить 
-    //сделать список групп, но в данный моент его не заполнить 
+    
+    //все студенты курса
+    public List<String> getStudentsFromCourse(int courseId){
+        Course course  = (Course)getSession().createCriteria(Course.class)
+                .add(Restrictions.eq("id", courseId))
+                .uniqueResult();
+        Set<Student> students = new HashSet();
+        Set<Group> groupByCources = course.getGroups();       
+        for(Group group: groupByCources){
+            students.addAll(group.getStudents());
+        }
+        List<String> uids = new ArrayList<>();
+        
+        for(Student selectedStudent: students){
+           uids.add(selectedStudent.getUid());
+        }
+        return uids;
+    } 
 }
