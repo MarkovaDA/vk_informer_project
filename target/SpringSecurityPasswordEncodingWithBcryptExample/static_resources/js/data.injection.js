@@ -66,12 +66,22 @@ $(document).ready(function(){
             
             $('#filters').find('.delete').eq(length-1).click(function(){
                var index =  parseInt($(this).parent().parent().index());
-               console.log(index);
                filterArray.splice(index,1);
                $(this).parent().parent().remove();
-               console.log(filterArray);
             });
         }
+        $('#send_filters').click(function(){
+            //var data = JSON.stringify({message: "тестовое сообщение", filters: filterArray});
+            var data = JSON.stringify(filterArray);
+            $.ajax({
+                url: "api/send_info",
+                dataType: "json",
+                type: "POST",
+                сontentType: 'application/json; charset=utf-8',
+                data: data,
+                success: function(data){ console.log(data); }
+            });
+        });       
     });
     //удаление фильтра
 });

@@ -13,6 +13,7 @@ import com.websystique.springsecurity.dto.GroupDTO;
 import com.websystique.springsecurity.dto.StudentDTO;
 import com.websystique.springsecurity.model.Filter;
 import com.websystique.springsecurity.model.Student;
+import com.websystique.springsecurity.model.MessageObject;
 import com.websystique.springsecurity.service.CourseService;
 import com.websystique.springsecurity.service.FacultyService;
 import com.websystique.springsecurity.service.GroupService;
@@ -27,11 +28,17 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 @RequestMapping("/api")
@@ -82,19 +89,7 @@ public class ApiController {
 		while ((inputLine = in.readLine()) != null) {
 			response.append(inputLine);
 		}
-		in.close();
-               
-                JsonParser parser = new JsonParser();
-                /*JsonObject parserObject = parser.parse(response.toString()).getAsJsonObject();
-                JsonArray  userArray = parserObject.getAsJsonArray("users");
-                String first_name;
-                String last_name;
-                for (JsonElement user : userArray) {
-                    
-                    JsonObject userObject = user.getAsJsonObject();
-                    first_name =  userObject.get("first_name").toString();
-                    last_name = userObject.get("last_name").toString();
-                }*/
+		in.close();    
                 int commaIndex = response.toString().indexOf("[");
                 String responseStr = (response.toString()).substring(commaIndex, response.length() - 2);
                 Type listType = new TypeToken<List<Student>>() {}.getType();
@@ -109,18 +104,28 @@ public class ApiController {
         return response.toString();
     } 
     
-    //получает людей,которым расслылает сообщения
-    @RequestMapping(value = { "/send_info" }, method = RequestMethod.POST)
-    public void sendInfoToPeople(Filter filter){
-        
-        if (filter.getGroup() != null){
-            studentService.getStudentsByGroupId(filter.getGroup());
-        }
-        else if (filter.getCourse() !=  null){
-            courseService.getUidsByCourse(filter.getCourse());
-        }
-        else if (filter.getFaculty() != null){
-            facultyService.getUidsByFaculty(filter.getFaculty());
-        }        
+    
+    @RequestMapping(value = { "/send_info" }, 
+                method = RequestMethod.POST
+                //produces = MediaType.APPLICATION_JSON_VALUE,
+                //consumes = MediaType.APPLICATION_JSON_VALUE
+    )
+    //@ResponseStatus(value=HttpStatus.OK)
+    @ResponseBody
+    public void sendInfoToPeople(/*@RequestBody MessageObject obj*/ @RequestBody Filter[] filters){
+      
+        /*for(Filter filter:filters)
+        {
+            if (filter.getGroup() != null){
+                studentService.getStudentsByGroupId(filter.getGroup());
+            }
+            else if (filter.getCourse() !=  null){
+                courseService.getUidsByCourse(filter.getCourse());
+            }
+            else if (filter.getFaculty() != null){
+                facultyService.getUidsByFaculty(filter.getFaculty());
+            }  
+        }*/
+        int a = 1;
     }
 }

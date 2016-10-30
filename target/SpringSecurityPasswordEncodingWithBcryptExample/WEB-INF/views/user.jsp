@@ -88,7 +88,7 @@
                         <label>Добавить подпись</label>                      
                     </div>                   
                     <br><br>
-                    <button class="ui violet button">отправить</button>
+                    <button class="ui violet button" id="send_filters">отправить</button>
                     <button class="ui violet button" style="float:right !important;">прикрепить файл</button>
                 </div>                                    
         </div>
