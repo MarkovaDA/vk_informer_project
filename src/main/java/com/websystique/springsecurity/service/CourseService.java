@@ -32,7 +32,7 @@ public class CourseService {
         return coursesDTO;          
     }
     
-    public List<String> getUidsByCourse(int courseId){
+    public List<String> getUidsByCourseId(int courseId){
         return dao.getStudentsFromCourse(courseId);
     }
 }

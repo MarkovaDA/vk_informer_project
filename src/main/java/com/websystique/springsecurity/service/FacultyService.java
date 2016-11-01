@@ -28,7 +28,7 @@ public class FacultyService {
         return facultiesDto;
     }
     
-    public List<String> getUidsByFaculty(int facultyId){
+    public List<String> getUidsByFacultyId(int facultyId){
         return dao.getStudentsFromFaculty(facultyId);
     }
 }

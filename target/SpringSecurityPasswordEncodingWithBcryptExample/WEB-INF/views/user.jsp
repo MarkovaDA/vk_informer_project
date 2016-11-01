@@ -92,5 +92,6 @@
                     <button class="ui violet button" style="float:right !important;">прикрепить файл</button>
                 </div>                                    
         </div>
+        <!--<a href="https://oauth.vk.com/authorize?client_id=5529263&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=offline,messages&response_type=token&v=5.37">get key</a>-->        
     </body>
 </html>

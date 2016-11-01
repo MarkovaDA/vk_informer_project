@@ -1,12 +1,26 @@
-
 package com.websystique.springsecurity.model;
 
-import java.util.List;
 
 
 public class MessageObject {
     String message;
-    List<Filter> filter;
+    Filter[] filters;
+
+    public Filter[] getFilters() {
+        return filters;
+    }
+
+    public void setFilters(Filter[] filters) {
+        this.filters = filters;
+    }
+
+    public MessageObject(String message, Filter[] filters) {
+        this.message = message;
+        this.filters = filters;
+    }
+    
+    public MessageObject(){
+    }
 
     public String getMessage() {
         return message;
@@ -15,12 +29,4 @@ public class MessageObject {
     public void setMessage(String message) {
         this.message = message;
     }
-
-    public List<Filter> getFilter() {
-        return filter;
-    }
-
-    public void setFilter(List<Filter> filter) {
-        this.filter = filter;
-    }    
 }

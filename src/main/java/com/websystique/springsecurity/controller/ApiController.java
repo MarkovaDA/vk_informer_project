@@ -18,6 +18,7 @@ import com.websystique.springsecurity.service.CourseService;
 import com.websystique.springsecurity.service.FacultyService;
 import com.websystique.springsecurity.service.GroupService;
 import com.websystique.springsecurity.service.StudentService;
+import com.websystique.springsecurity.service.VKApiService;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -31,6 +32,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -103,29 +105,36 @@ public class ApiController {
         }
         return response.toString();
     } 
-    
-    
-    @RequestMapping(value = { "/send_info" }, 
-                method = RequestMethod.POST
-                //produces = MediaType.APPLICATION_JSON_VALUE,
-                //consumes = MediaType.APPLICATION_JSON_VALUE
-    )
-    //@ResponseStatus(value=HttpStatus.OK)
+       
+    @PostMapping(value = "/send_info")
     @ResponseBody
-    public void sendInfoToPeople(/*@RequestBody MessageObject obj*/ @RequestBody Filter[] filters){
-      
-        /*for(Filter filter:filters)
-        {
+    public String sendInfoToPeople(@RequestBody MessageObject obj /*@RequestBody Filter filter*/) throws InterruptedException, IOException{
+        String message = obj.getMessage();
+        List<String> sendors = new ArrayList();
+        for(Filter filter:obj.getFilters()){
             if (filter.getGroup() != null){
-                studentService.getStudentsByGroupId(filter.getGroup());
+                sendors.addAll(studentService.getUidsByGroupId(filter.getGroup()));
+                continue;
             }
-            else if (filter.getCourse() !=  null){
-                courseService.getUidsByCourse(filter.getCourse());
+            else if (filter.getCourse() != null){
+                sendors.addAll(courseService.getUidsByCourseId(filter.getCourse()));
+                continue;
             }
             else if (filter.getFaculty() != null){
-                facultyService.getUidsByFaculty(filter.getFaculty());
-            }  
-        }*/
-        int a = 1;
+               sendors.addAll(facultyService.getUidsByFacultyId(filter.getFaculty()));
+               continue;
+            }
+        }
+        //3 запроса в секунду
+        for(int i=0; i < sendors.size(); i++){   
+            if (sendors.get(i)!= null)
+            VKApiService.sendMessage(sendors.get(i), message);          
+            
+            if ((i+1)%3 == 0)
+            {                
+                Thread.sleep(1000);               
+            }
+        }
+        return "success_response";
     }
 }

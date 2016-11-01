@@ -71,15 +71,24 @@ $(document).ready(function(){
             });
         }
         $('#send_filters').click(function(){
-            //var data = JSON.stringify({message: "тестовое сообщение", filters: filterArray});
-            var data = JSON.stringify(filterArray);
+            var obj = new Object(); //объект, состоящий 
+                obj.message = "Test message";
+                obj.filters = filterArray;
+            
+            console.log(obj);
+            
             $.ajax({
-                url: "api/send_info",
-                dataType: "json",
-                type: "POST",
-                сontentType: 'application/json; charset=utf-8',
-                data: data,
-                success: function(data){ console.log(data); }
+                    headers: { 
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json' 
+                    },
+                    'type': 'POST',
+                    'url': 'api/send_info',
+                    'data': JSON.stringify(obj),
+                    'dataType': 'json',
+                    'success': function(data){
+                        console.log(data);
+                    }
             });
         });       
     });

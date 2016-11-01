@@ -58,9 +58,9 @@ public class MainController {
 	
         @RequestMapping(value={"/test_service/","/test_service"}, method=RequestMethod.GET)
         public void testService(){
-            List<String> list1 = facultyService.getUidsByFaculty(1);
-            List<String> list2 = courseService.getUidsByCourse(1);
-            List<String> list3 = studentService.getStudentsByGroupId(8);
+            List<String> list1 = facultyService.getUidsByFacultyId(1);
+            List<String> list2 = courseService.getUidsByCourseId(1);
+            List<String> list3 = studentService.getUidsByGroupId(8);
         }
         
             

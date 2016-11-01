@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class VKApiService {
         
-    private static final String ACCESS_TOKEN = "NO";
+    private static final String ACCESS_TOKEN = "b16864fec478b4587708a4bcc169e95e359155efb07fc70ec13c118a8b306f295c08ce6f8773a0a56126a";
            
     public static boolean sendMessage(String userId, String message) throws IOException
     { 

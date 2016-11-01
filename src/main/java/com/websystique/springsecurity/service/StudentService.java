@@ -20,7 +20,7 @@ public class StudentService {
     @Autowired
     private StudentDao dao;
     
-    public List<String> getStudentsByGroupId(Integer groupId){
+    public List<String> getUidsByGroupId(Integer groupId){
         return dao.getStudentsByGroupId(groupId);
     }
     
