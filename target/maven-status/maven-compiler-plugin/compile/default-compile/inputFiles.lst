@@ -4,6 +4,7 @@
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/dao/UserProfileDaoImpl.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/model/Transliteration.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/model/Specialty.java
+/home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/controller/AdresatController.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/service/VKApiService.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/service/UserService.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/dao/CourseDao.java

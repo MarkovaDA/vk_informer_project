@@ -40,6 +40,7 @@ com/websystique/springsecurity/dto/GroupDTO.class
 com/websystique/springsecurity/configuration/HibernateConfiguration.class
 com/websystique/springsecurity/service/UserProfileService.class
 com/websystique/springsecurity/model/Course.class
+com/websystique/springsecurity/controller/AdresatController.class
 com/websystique/springsecurity/service/FacultyService.class
 com/websystique/springsecurity/model/UserProfileType.class
 com/websystique/springsecurity/configuration/SecurityWebApplicationInitializer.class

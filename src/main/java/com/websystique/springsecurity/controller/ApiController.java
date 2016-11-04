@@ -1,16 +1,11 @@
 package com.websystique.springsecurity.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser; 
 import java.lang.reflect.Type;
 import com.google.gson.reflect.TypeToken;
 import com.websystique.springsecurity.dto.CourseDTO;
 import com.websystique.springsecurity.dto.GroupDTO;
-import com.websystique.springsecurity.dto.StudentDTO;
 import com.websystique.springsecurity.model.Filter;
 import com.websystique.springsecurity.model.Student;
 import com.websystique.springsecurity.model.MessageObject;
@@ -29,16 +24,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 

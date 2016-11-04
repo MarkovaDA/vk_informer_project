@@ -66,7 +66,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 //.antMatchers("/client","/client/**").hasRole("CLIENT")
                 //.antMatchers("/employee","/employee/**").hasRole("EMPLOYEE")
                 .antMatchers("/user/**").access("hasRole('LECT')")
-                .antMatchers("/entrance","/entrance/**").hasAnyRole("ADMIN","LECT") 
+                .antMatchers("/entrance","/entrance/**").hasAnyRole("ADMIN","LECT","ADRESAT") 
 	  	.and().formLogin().loginPage("/login")
 	  	.usernameParameter("login").passwordParameter("password")
 	  	.and().exceptionHandling().accessDeniedPage("/Access_Denied");  

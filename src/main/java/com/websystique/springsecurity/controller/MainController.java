@@ -33,6 +33,7 @@ import com.websystique.springsecurity.service.UserProfileService;
 import com.websystique.springsecurity.service.UserService;
 import java.util.Iterator;
 import java.util.Set;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -82,6 +83,16 @@ public class MainController {
 		model.addAttribute("user", getPrincipal());
                 model.addAttribute("faculties", facultyService.getFaculties());
 		return "user";
+	}
+        
+        @RequestMapping(value = { "/adresat"}, method = RequestMethod.GET)
+	public String adresatPage(ModelMap model) {
+                //пароль zhirafic
+                //логин - id вконтакте
+                //пароль - присылается на почту сразу после добавления админом пользователя
+                //пароль можно сменить в настройках
+		model.addAttribute("user", getPrincipal());
+		return "adresat";
 	}
       
 	@RequestMapping(value = "/db", method = RequestMethod.GET)
@@ -160,21 +171,22 @@ public class MainController {
             User current = getCurrentUser();
             SessionUser.setCurrentUser(current);
             Set<UserProfile> roles = current.getUserProfiles();
-            Iterator<UserProfile> iterator = roles.iterator();
-            
-            /*FacultyDTO faculty = facultyService.getFacultyById(1);            
-            List<CourseDTO> course = courseService.getCoursesByFacultyId(1);*/
-            //прогрузить в формочки
-            
+            Iterator<UserProfile> iterator = roles.iterator();     
             if (roles.size() >= 1){
                 String roleName = iterator.next().getType().toLowerCase(); //смотрим по первому типу роли
+                //на страничку лектора
                 if (roleName.endsWith("lect"))
                     return new ModelAndView("redirect:/user");
+                //на страничку адресата - опции рассылки сообщений
+                if (roleName.endsWith("adresat"))
+                    return new ModelAndView("redirect:/adresat");
+                //на страничку админа - администрирование сервиса
                 if (roleName.endsWith("admin"))
                     return new ModelAndView("redirect:/admin");
             }
             return new ModelAndView("redirect:/");
-        }	
+        }
+        
 	private String getPrincipal(){
 		String userName = null;
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -204,4 +216,5 @@ public class MainController {
 	public List<UserProfile> initializeProfiles() {
 		return userProfileService.findAll();
 	}
+        
 }
