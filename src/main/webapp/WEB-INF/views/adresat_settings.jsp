@@ -15,7 +15,16 @@
                 //активация вкладок
                 $('.demo.menu .item').tab();
                 var settings = new Object();
-                
+                //262591631
+                //by_mail, by_vk
+                $('#btn_apply').click(function(){
+                    settings.by_mail = $('#by_mail').prop("checked");
+                    settings.by_vk = $('#by_vk').prop("checked");
+                    settings.mail = $('#mail_input input').val();
+                    settings.old_password = $('#old_password_input input').val();
+                    settings.new_password = $('#new_password_input input').val();
+                    console.log(settings);
+              });             
             });
         </script>
         <style>
@@ -85,12 +94,12 @@
                     <div class="ui tab segment" data-tab="second">
                         <p>получать уведомления:</p>
                         <div class="ui checked checkbox">
-                            <input type="checkbox" checked="">                    
+                            <input type="checkbox" id="by_mail">                    
                             <label> <i class="mail outline icon"></i> по почте</label>
                         </div>
                         <br><br>
                         <div class="ui checked checkbox">
-                            <input type="checkbox" checked="">
+                            <input type="checkbox" checked="" id="by_vk">
                             <label> <i class="vk outline icon"></i> через "вконтакте"</label>
                         </div> 
                         <br>
