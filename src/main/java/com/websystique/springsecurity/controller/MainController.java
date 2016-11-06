@@ -57,17 +57,9 @@ public class MainController {
         @Autowired
         private StudentService studentService;
 	
-        @RequestMapping(value={"/test_service/","/test_service"}, method=RequestMethod.GET)
-        public void testService(){
-            List<String> list1 = facultyService.getUidsByFacultyId(1);
-            List<String> list2 = courseService.getUidsByCourseId(1);
-            List<String> list3 = studentService.getUidsByGroupId(8);
-        }
-        
-            
+                   
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public String homePage(ModelMap model) {
-                List<CourseDTO> facultets  = courseService.getCoursesByFacultyId(1);
 		model.addAttribute("greeting", "Hi, Welcome to mysite");
 		return "welcome";
 	}

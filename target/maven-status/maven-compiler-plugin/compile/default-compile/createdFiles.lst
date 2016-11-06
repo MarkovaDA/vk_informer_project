@@ -13,6 +13,7 @@ com/websystique/springsecurity/controller/ApiController.class
 com/websystique/springsecurity/service/VKApiService.class
 com/websystique/springsecurity/model/Faculty.class
 com/websystique/springsecurity/dao/UserProfileDao.class
+com/websystique/springsecurity/service/AuthService.class
 com/websystique/springsecurity/dao/UserDao.class
 com/websystique/springsecurity/model/MessageObject.class
 com/websystique/springsecurity/model/State.class

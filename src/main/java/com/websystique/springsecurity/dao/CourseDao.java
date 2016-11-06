@@ -24,20 +24,20 @@ public class CourseDao extends AbstractDao<Integer, Course>{
     }
     
     //все студенты курса
-    public List<String> getStudentsFromCourse(int courseId){
+    public List<Student> getStudentsFromCourse(int courseId){
         Course course  = (Course)getSession().createCriteria(Course.class)
                 .add(Restrictions.eq("id", courseId))
                 .uniqueResult();
-        Set<Student> students = new HashSet();
+        List<Student> students = new ArrayList();
         Set<Group> groupByCources = course.getGroups();       
         for(Group group: groupByCources){
             students.addAll(group.getStudents());
         }
-        List<String> uids = new ArrayList<>();
+        /*List<String> uids = new ArrayList<>();
         
         for(Student selectedStudent: students){
            uids.add(selectedStudent.getUid());
-        }
-        return uids;
+        }*/
+        return students;
     } 
 }

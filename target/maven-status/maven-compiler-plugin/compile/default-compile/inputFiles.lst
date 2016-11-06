@@ -44,3 +44,4 @@
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/dto/GroupDTO.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/model/Filter.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/model/User.java
+/home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/service/AuthService.java

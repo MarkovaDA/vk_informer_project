@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -101,7 +102,7 @@ public class ApiController {
     @ResponseBody
     public String sendInfoToPeople(@RequestBody MessageObject obj /*@RequestBody Filter filter*/) throws InterruptedException, IOException{
         String message = obj.getMessage();
-        List<String> sendors = new ArrayList();
+        List<Student> sendors = new ArrayList();
         for(Filter filter:obj.getFilters()){
             if (filter.getGroup() != null){
                 sendors.addAll(studentService.getUidsByGroupId(filter.getGroup()));
@@ -116,11 +117,14 @@ public class ApiController {
                continue;
             }
         }
-        //3 запроса в секунду
-        for(int i=0; i < sendors.size(); i++){   
-            if (sendors.get(i)!= null)
-            VKApiService.sendMessage(sendors.get(i), message);          
-            
+        //отфильтруем тех, кто настроил себе оповещения по вк
+        List<Student> studentsByVk = sendors.stream().filter(
+                item -> item.getByVK() == true
+        ).collect(Collectors.toList());
+        
+        for(int i=0; i < studentsByVk.size(); i++){   
+            if (studentsByVk.get(i).getUid() != null)
+            VKApiService.sendMessage(studentsByVk.get(i).getUid(), message);                      
             if ((i+1)%3 == 0)
             {                
                 Thread.sleep(1000);               

@@ -4,6 +4,7 @@ import com.websystique.springsecurity.dao.CourseDao;
 import com.websystique.springsecurity.dto.CourseDTO;
 import com.websystique.springsecurity.dto.FacultyDTO;
 import com.websystique.springsecurity.model.Course;
+import com.websystique.springsecurity.model.Student;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -32,7 +33,7 @@ public class CourseService {
         return coursesDTO;          
     }
     
-    public List<String> getUidsByCourseId(int courseId){
+    public List<Student> getUidsByCourseId(int courseId){
         return dao.getStudentsFromCourse(courseId);
     }
 }

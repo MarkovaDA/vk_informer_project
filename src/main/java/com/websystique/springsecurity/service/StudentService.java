@@ -1,13 +1,9 @@
 
 package com.websystique.springsecurity.service;
 
-import com.websystique.springsecurity.dao.GroupDao;
+
 import com.websystique.springsecurity.dao.StudentDao;
-import com.websystique.springsecurity.dto.GroupDTO;
-import com.websystique.springsecurity.model.Group;
 import com.websystique.springsecurity.model.Student;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +16,7 @@ public class StudentService {
     @Autowired
     private StudentDao dao;
     
-    public List<String> getUidsByGroupId(Integer groupId){
+    public List<Student> getUidsByGroupId(Integer groupId){
         return dao.getStudentsByGroupId(groupId);
     }
     
@@ -34,5 +30,9 @@ public class StudentService {
    
     public void saveMultipleStudents2(List<Student> students){
         dao.saveMultipleStudents2(students);
+    }
+    
+    public Student getStudentInfoByUid(String uid){
+        return dao.getStudentInfoByLogin(uid);
     }
 }

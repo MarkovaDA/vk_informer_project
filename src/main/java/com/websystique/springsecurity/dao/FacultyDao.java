@@ -28,23 +28,24 @@ public class FacultyDao extends AbstractDao<Integer, Faculty>{
                 setResultTransformer(DistinctRootEntityResultTransformer.INSTANCE).list();
     }
     //все студенты факультета
-    public List<String> getStudentsFromFaculty(int facultyId){
+    public List<Student> getStudentsFromFaculty(int facultyId){
         Faculty faculty =  (Faculty)getSession().createCriteria(Faculty.class)
                 .add(Restrictions.eq("id", facultyId))
                 .uniqueResult();
         Set<Student> students = new HashSet();
         Set<Course> cources = faculty.getCourses();//все курсы факультета
-        Set<Group> groupByCources = new HashSet<>();
-        List<String> uids = new ArrayList<>();
+        Set<Group> groupByCources = new HashSet<>(); 
+        List<Student> uids = new ArrayList<>();
         for(Course course: cources){
-            groupByCources = course.getGroups();            
-            for(Group group: groupByCources){
+            groupByCources = course.getGroups();//получаем все группы курса            
+            for(Group group: groupByCources){ //из каждой группы получаем студентов
                 students.addAll(group.getStudents());
             }
         }
-        for(Student selectedStudent: students){
-           uids.add(selectedStudent.getUid());
-        }
+        uids.addAll(students);
+        /*for(Student selectedStudent: students){
+           uids.add(selectedStudent);
+        }*/
         return uids;
     }
     

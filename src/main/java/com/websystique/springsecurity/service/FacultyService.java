@@ -4,6 +4,7 @@ package com.websystique.springsecurity.service;
 import com.websystique.springsecurity.dao.FacultyDao;
 import com.websystique.springsecurity.dto.FacultyDTO;
 import com.websystique.springsecurity.model.Faculty;
+import com.websystique.springsecurity.model.Student;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class FacultyService {
         return facultiesDto;
     }
     
-    public List<String> getUidsByFacultyId(int facultyId){
+    public List<Student> getUidsByFacultyId(int facultyId){
         return dao.getStudentsFromFaculty(facultyId);
     }
 }

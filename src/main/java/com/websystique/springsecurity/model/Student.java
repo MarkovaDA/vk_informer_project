@@ -45,6 +45,28 @@ public class Student {
     @Column(name="is_captain", columnDefinition="BIT")
     private Boolean isCaptain = false;
     
+    @Column(name="by_mail", columnDefinition="BIT")
+    private Boolean byMail;
+    
+    @Column(name="by_vk", columnDefinition="BIT")
+    private Boolean byVK;
+
+    public Boolean getByMail() {
+        return byMail;
+    }
+
+    public void setByMail(Boolean byMail) {
+        this.byMail = byMail;
+    }
+
+    public Boolean getByVK() {
+        return byVK;
+    }
+
+    public void setByVK(Boolean byVK) {
+        this.byVK = byVK;
+    }
+      
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="group_id")
     private Group group;//группа, которой принадлжеит студент
@@ -73,8 +95,7 @@ public class Student {
         return uid;
     }
 
-  
-
+ 
     public String getFirst_name() {
         return first_name;
     }

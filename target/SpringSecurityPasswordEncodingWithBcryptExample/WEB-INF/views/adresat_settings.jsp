@@ -10,6 +10,26 @@
         <script type="text/javascript" src='<c:url value="/static_resources/js/semantic.min.js"/>'></script>
         <script type="text/javascript" src='<c:url value="/static_resources/js/customer.select.js"/>'></script>
         <script type="text/javascript" src='<c:url value="/static_resources/js/data.injection.js"/>'></script>
+        <script>
+            $(document).ready(function(){
+                //активация вкладок
+                $('.demo.menu .item').tab();
+                var settings = new Object();
+                
+            });
+        </script>
+        <style>
+            .simple_href:hover{
+                text-decoration: underline !important;
+            }
+            .input{
+              width: 100% !important;             
+            }
+            input:focus{
+                border: 1px solid #4f20b5 !important;
+            }
+            
+        </style>
         <link href="<c:url value='/static_resources/css/semantic.min.css' />" rel="stylesheet"></link>
     </head>
     <body>
@@ -17,7 +37,7 @@
             <div class="sixteen wide column">
                 <div class="ui violet clearing segment">
                     <div class="ui left floated segment" style="margin: 0px;padding:0px; border:none; box-shadow: none;">
-                        <i class="large user icon"></i>
+                        <i class="large settings icon"></i>
                         <!--Вы вошли в систему как
                         <a style="font-size: 1.1em !important; color: #4f20b5;">${user}</a>
                         (ваш идентификатор "вконтакте") -->
@@ -31,24 +51,55 @@
                     </div>                   
                 </div>
             </div>
-            <div class="twelve wide column" style="text-align: left !important;">               
-                <p>получать уведомления:</p>
-                <div class="ui checked checkbox">
-                    <input type="checkbox" checked="">                    
-                    <label> <i class="mail outline icon"></i> по почте</label>
+            <div class="six wide column" style="text-align: left !important;">                                 
+                <div class="row" style="height: 300px;">                    
+                    <div class="ui pointing secondary demo menu">
+                      <a class="active violet item" data-tab="first">
+                          <i class="user icon"></i>
+                          Личные данные
+                      </a>
+                      <a class="violet item" data-tab="second">
+                          <i class="alarm icon"></i>
+                          Оповещения
+                      </a>
+                    </div>
+                    <!--1 вкладка - настройка личных параметров-->
+                    <div class="ui active tab segment" data-tab="first">
+                        <i class="write icon"></i>
+                        <a class="simple_href mail_href"  style="color: #242424;">
+                            Моя почта</a><br><br>
+                        <div class="ui input" id="mail_input">
+                            <input type="text" value = ${mail}>
+                        </div>
+                        <br><br>
+                        <i class="lock icon"></i>
+                        <a class="simple_href pass_href"  style="color: #242424;">Пароль</a><br><br>
+                            <div class="ui input" id="old_password_input">
+                                <input type="password" placeholder="старый пароль">
+                            </div><br><br>
+                            <div class="ui input" id="new_password_input">
+                                <input type="password" placeholder="новый пароль">
+                            </div>
+                    </div>
+                    <!--2 вкладка - настройка оповещений-->
+                    <div class="ui tab segment" data-tab="second">
+                        <p>получать уведомления:</p>
+                        <div class="ui checked checkbox">
+                            <input type="checkbox" checked="">                    
+                            <label> <i class="mail outline icon"></i> по почте</label>
+                        </div>
+                        <br><br>
+                        <div class="ui checked checkbox">
+                            <input type="checkbox" checked="">
+                            <label> <i class="vk outline icon"></i> через "вконтакте"</label>
+                        </div> 
+                        <br>
+                    </div>                    
                 </div>
-                <br><br>
-                <div class="ui checked checkbox">
-                    <input type="checkbox" checked="">
-                    <label> <i class="vk outline icon"></i> через "вконтакте"</label>
-                </div> 
-                <br><br>
-                <a href="" style="color: #4f20b5;">редактирвать почту</a><br>              
-                <a href="" style="color: #4f20b5;">изменить пароль</a>
             </div>
          
             <div class="sixteen wide column" style="text-align:right !important;">
-                <button class="ui violet button">применить</button>  
+                <button class="ui violet button" id="btn_apply">применить</button>  
                 <button class="ui violet basic button">отмена</button>
             </div>
         </div>     
