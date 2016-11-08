@@ -23,8 +23,23 @@
                     settings.mail = $('#mail_input input').val();
                     settings.old_password = $('#old_password_input input').val();
                     settings.new_password = $('#new_password_input input').val();
-                    console.log(settings);
-              });             
+                    settings.login = $('#login').html();
+                    console.log(JSON.stringify(settings));
+                    
+                    $.ajax({
+                        headers: { 
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json' 
+                        },
+                        'type': 'POST',
+                        'url': 'update_settings',
+                        'data': JSON.stringify(settings),
+                        'dataType': 'json',
+                        'success': function(data){
+                            console.log(data);
+                        }
+                    });
+                });             
             });
         </script>
         <style>
@@ -46,11 +61,8 @@
             <div class="sixteen wide column">
                 <div class="ui violet clearing segment">
                     <div class="ui left floated segment" style="margin: 0px;padding:0px; border:none; box-shadow: none;">
-                        <i class="large settings icon"></i>
-                        <!--Вы вошли в систему как
-                        <a style="font-size: 1.1em !important; color: #4f20b5;">${user}</a>
-                        (ваш идентификатор "вконтакте") -->
-                        Пользовательские настройки 
+                        <i class="large settings icon"></i>                       
+                        <span id="login">${user}</span>                          
                     </div>
                     <div class="ui right floated segment" style="margin: 0px;padding:0px; border:none; box-shadow: none;">
                         <i class="large home icon"></i>

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.websystique.springsecurity.dao.UserDao;
+import com.websystique.springsecurity.model.Settings;
 import com.websystique.springsecurity.model.User;
 
 @Service("userService")
@@ -31,5 +32,10 @@ public class UserServiceImpl implements UserService{
 	public User findByLogin(String login) {
 		return dao.findByLogin(login);
 	}
-	
+        
+        @Override
+        public Boolean changePassword(Settings settings){
+            return dao.changePassword(settings);
+        }
+       
 }

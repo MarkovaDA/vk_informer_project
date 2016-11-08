@@ -18,6 +18,7 @@ com/websystique/springsecurity/dao/UserDao.class
 com/websystique/springsecurity/model/MessageObject.class
 com/websystique/springsecurity/model/State.class
 com/websystique/springsecurity/model/Student.class
+com/websystique/springsecurity/model/Settings.class
 com/websystique/springsecurity/controller/ApiController$1.class
 com/websystique/springsecurity/dao/CourseDao.class
 com/websystique/springsecurity/model/UserProfile.class

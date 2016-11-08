@@ -3,6 +3,7 @@ package com.websystique.springsecurity.service;
 
 
 import com.websystique.springsecurity.dao.StudentDao;
+import com.websystique.springsecurity.model.Settings;
 import com.websystique.springsecurity.model.Student;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,11 @@ public class StudentService {
     }
     
     public Student getStudentInfoByUid(String uid){
-        return dao.getStudentInfoByLogin(uid);
+        return dao.getStudentByUId(uid);
+    }
+    
+    //применение пользовательских настроек
+    public void applyStudentSettings(Settings settings){
+        dao.applyStudentSettings(settings);
     }
 }

@@ -2,7 +2,9 @@
 package com.websystique.springsecurity.dao;
 
 
+import com.websystique.springsecurity.model.Settings;
 import com.websystique.springsecurity.model.Student;
+import com.websystique.springsecurity.model.User;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
@@ -47,7 +49,7 @@ public class StudentDao extends AbstractDao<Integer, Student>{
         return students;
     }
     
-    //выбрать старосту группу
+    //выбрать старосту группы
     public Student getCaptainOfGroup(Integer groupId){
          return (Student) getSession().createCriteria(Student.class)
                 .add(Restrictions.eq("group.id", groupId))
@@ -55,10 +57,27 @@ public class StudentDao extends AbstractDao<Integer, Student>{
                 .uniqueResult();
     }
     
-    public Student getStudentInfoByLogin(String uid){
+    public Student getStudentByUId(String uid){
         return (Student) getSession().createCriteria(Student.class)
                 .add(Restrictions.eq("uid", uid))
                 .uniqueResult();
+    }
+    
+    //применить настройки
+    public void applyStudentSettings(Settings settings){        
+        //применить остальные настройки
+        Student student = getStudentByUId(settings.getLogin());
+        
+        if (student != null) {
+            //обновляем почту
+            if (settings.getMail() != null)
+                student.setMail(settings.getMail());
+            if (settings.getBy_mail() != null)
+                student.setByMail(settings.getBy_mail());
+            if (settings.getBy_vk() != null)
+                student.setByVK(settings.getBy_vk());  
+            update(student);
+        }       
     }
     
 }
