@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import com.websystique.springsecurity.model.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 @Repository("userDao")
 public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
@@ -28,17 +30,17 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
         //функция смены пароля
         @Override
         public Boolean changePassword(Settings settings){
-            if (settings.getNew_password().equals(settings.getOld_password()))
-                return true;
-            User user = findByLogin(settings.getLogin());            
-            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-            //старый пароль не подтвержден 
-            if (user.getPassword().equals(encoder.encode(settings.getOld_password())))
-                return false;            
-            user.setPassword(encoder.encode(settings.getNew_password()));
-            //требуется обновление почты
+            //пароль не изменился
+            User user = findByLogin(settings.getLogin()); 
             if (settings.getMail() != null)
                 user.setEmail(settings.getMail());
+            if (settings.getNew_password().equals(settings.getOld_password()))
+                return true;
+            StandardPasswordEncoder encoder = new StandardPasswordEncoder(); 
+            //старый пароль подтверждается - обновляем пароль на новый
+            if (!encoder.matches(settings.getOld_password(), user.getPassword()))
+                return false;
+            user.setPassword(encoder.encode(settings.getNew_password()));           
             update(user);
             return true;
         }

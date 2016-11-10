@@ -1,10 +1,6 @@
 package com.websystique.springsecurity.controller;
 
-import com.websystique.springsecurity.dto.CourseDTO;
-import com.websystique.springsecurity.dto.FacultyDTO;
-import com.websystique.springsecurity.model.Course;
-import com.websystique.springsecurity.model.Faculty;
-import com.websystique.springsecurity.model.Group;
+
 import com.websystique.springsecurity.model.SessionUser;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +29,10 @@ import com.websystique.springsecurity.service.UserProfileService;
 import com.websystique.springsecurity.service.UserService;
 import java.util.Iterator;
 import java.util.Set;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -60,8 +59,11 @@ public class MainController {
                    
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public String homePage(ModelMap model) {
-		model.addAttribute("greeting", "Hi, Welcome to mysite");
-		return "welcome";
+            //PasswordEncoder encoder = new StandardPasswordEncoder();
+            //String adminPassword = encoder.encode("markova_d_a");
+            //String adresatPassword = encoder.encode("1234");
+            model.addAttribute("greeting", "Hi, Welcome to mysite");
+            return "welcome";
 	}
        
 	@RequestMapping(value = { "/admin"}, method = RequestMethod.GET)

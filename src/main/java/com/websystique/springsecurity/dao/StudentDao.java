@@ -69,8 +69,8 @@ public class StudentDao extends AbstractDao<Integer, Student>{
         Student student = getStudentByUId(settings.getLogin());
         
         if (student != null) {
-            //обновляем почту
-            if (settings.getMail() != null)
+            //обновляем почту, если она изменилась
+            if (settings.getMail() != null && !settings.getMail().equals(student.getMail()))
                 student.setMail(settings.getMail());
             if (settings.getBy_mail() != null)
                 student.setByMail(settings.getBy_mail());

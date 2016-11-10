@@ -12,6 +12,7 @@
         <script type="text/javascript" src='<c:url value="/static_resources/js/data.injection.js"/>'></script>
         <script>
             $(document).ready(function(){
+                $('#status_apply').hide();
                 //активация вкладок
                 $('.demo.menu .item').tab();
                 var settings = new Object();
@@ -37,8 +38,13 @@
                         'dataType': 'json',
                         'success': function(data){
                             console.log(data);
-                        }
+                         }
+                    })
+                    .done(function(data) {
+                        console.log("done");
                     });
+                    
+                    $('#status_apply').fadeIn(200);
                 });             
             });
         </script>
@@ -115,7 +121,9 @@
                             <label> <i class="vk outline icon"></i> через "вконтакте"</label>
                         </div> 
                         <br>
-                    </div>                    
+                    </div> 
+                    
+                    <a class="ui label" id="status_apply" style="width: 100%; text-align: center;">Настройки применены успешно</a>
                 </div>
             </div>
          
