@@ -32,12 +32,12 @@
                         <!--<div class="ui violet segment" style="text-align:center !important;">-->
                         <form action="${loginUrl}" method="post">
                                 <c:if test="${param.error != null}">
-                                        <div class="alert alert-danger">
+                                        <div class="ui label">
                                                 <p>Invalid username and password.</p>
                                         </div>
                                 </c:if>
                                 <c:if test="${param.logout != null}">
-                                        <div class="alert alert-success">
+                                        <div class="ui label">
                                                 <p>You have been logged out successfully.</p>
                                         </div>
                                 </c:if>

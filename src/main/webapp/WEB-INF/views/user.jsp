@@ -25,7 +25,7 @@
                     <div class="ui right floated segment" style="margin: 0px;padding:0px; border:none; box-shadow: none;">
                         <i class="large setting icon"></i>
                         <a style="font-size: 1.1em !important; color: #4f20b5;">Settings</a>
-                        <a href="/logout">Выход</a>
+                        <a href="app_logout">Выход</a>
                     </div>                   
                 </div>
             </div>
