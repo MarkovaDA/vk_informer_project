@@ -12,6 +12,7 @@ import com.websystique.springsecurity.model.MessageObject;
 import com.websystique.springsecurity.service.CourseService;
 import com.websystique.springsecurity.service.FacultyService;
 import com.websystique.springsecurity.service.GroupService;
+import com.websystique.springsecurity.service.MailService;
 import com.websystique.springsecurity.service.StudentService;
 import com.websystique.springsecurity.service.VKApiService;
 import java.io.BufferedReader;
@@ -48,6 +49,9 @@ public class ApiController {
     
     @Autowired
     private StudentService studentService;
+    
+    @Autowired
+    private MailService mailService;
     
     @RequestMapping(value = { "/get_courses" }, method = RequestMethod.GET)
     public List<CourseDTO> getCourses(@RequestParam("fac_id")Integer facId){
@@ -123,13 +127,20 @@ public class ApiController {
         ).collect(Collectors.toList());
         
         for(int i=0; i < studentsByVk.size(); i++){   
-            if (studentsByVk.get(i).getUid() != null)
-            VKApiService.sendMessage(studentsByVk.get(i).getUid(), message);                      
+            if (studentsByVk.get(i).getUid() == null)
+                continue;
+            System.out.println("ПОЛЬЗОВАТЕЛЬ " + studentsByVk.get(i).getFirst_name());
+            //VKApiService.sendMessage(studentsByVk.get(i).getUid(), message);                      
             if ((i+1)%3 == 0)
             {                
-                Thread.sleep(1000);               
+                Thread.sleep(1000);  //выдерживаем правильно - 3 запроса в секунду             
             }
-        }
+        }       
+        //теперь тех, кто настроил себе отправку сообщений через почту
+        List<Student> studentsByMail = sendors.stream().filter(
+                item -> item.getByMail() == true
+        ).collect(Collectors.toList());        
+        mailService.sendMail(message, studentsByMail);                
         return "success_response";
     }
 }

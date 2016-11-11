@@ -20,12 +20,12 @@
                     <div class="ui left floated segment" style="margin: 0px;padding:0px; border:none; box-shadow: none;">
                         <i class="large user icon"></i>
                         Вы вошли в систему как
-                        <a style="font-size: 1.1em !important; color: #4f20b5;">${user}</a> 
-                        
+                        <a style="font-size: 1.1em !important; color: #4f20b5;">${user}</a>                        
                     </div>
                     <div class="ui right floated segment" style="margin: 0px;padding:0px; border:none; box-shadow: none;">
                         <i class="large setting icon"></i>
                         <a style="font-size: 1.1em !important; color: #4f20b5;">Settings</a>
+                        <a href="/logout">Выход</a>
                     </div>                   
                 </div>
             </div>
@@ -83,7 +83,7 @@
                 </div>
                 <!--вторая колонка-->
                 <div class="eight wide column" style="text-align: left !important;">
-                    <textarea style="width:100%;" rows="9"></textarea>
+                    <textarea style="width:100%;" rows="9" id="text_message"></textarea>
                     <br>                    
                     <div class="ui checkbox">
                         <input type="checkbox">

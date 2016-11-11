@@ -72,7 +72,7 @@ $(document).ready(function(){
         }
         $('#send_filters').click(function(){
             var obj = new Object(); //объект, состоящий 
-                obj.message = "Test message";
+                obj.message = $('#text_message').val();
                 obj.filters = filterArray;
             
             console.log(obj);

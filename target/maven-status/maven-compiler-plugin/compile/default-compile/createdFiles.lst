@@ -5,6 +5,7 @@ com/websystique/springsecurity/dto/CourseDTO.class
 com/websystique/springsecurity/model/User.class
 com/websystique/springsecurity/model/SessionUser.class
 com/websystique/springsecurity/dto/FacultyDTO.class
+com/websystique/springsecurity/service/MailService.class
 com/websystique/springsecurity/dto/StudentDTO.class
 com/websystique/springsecurity/util/QuickPasswordEncodingGenerator.class
 com/websystique/springsecurity/model/Filter.class
@@ -17,6 +18,7 @@ com/websystique/springsecurity/service/AuthService.class
 com/websystique/springsecurity/dao/UserDao.class
 com/websystique/springsecurity/model/MessageObject.class
 com/websystique/springsecurity/model/State.class
+com/websystique/springsecurity/configuration/MailConfig.class
 com/websystique/springsecurity/model/Student.class
 com/websystique/springsecurity/model/Settings.class
 com/websystique/springsecurity/controller/ApiController$1.class

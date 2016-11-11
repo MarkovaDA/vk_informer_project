@@ -41,19 +41,8 @@ public class VKApiService {
         StringBuilder sb = new StringBuilder();
         for (int c; (c = in.read()) >= 0;)
         sb.append((char)c);
-        String response = sb.toString();//ответ от сервера 
+        String response = sb.toString();//ответ от сервера
+        //состояние отправки
         return (!response.contains("error"));
-    }
-
-    private static String readResponseFromHTTP(HttpURLConnection connection) throws IOException{
-        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
-        String inputLine;
-        StringBuilder response = new StringBuilder();
-        while ((inputLine = in.readLine()) != null) { 
-            response.append(inputLine);
-        } 
-        in.close(); 
-        return response.toString(); 
-    }
-    
+    }    
 }
