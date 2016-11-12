@@ -20,7 +20,7 @@ public class MailService {
     @Autowired
     JavaMailSender mailSender;
     
-    //
+   
     public void sendMail(String messageHTML, List<Student> students) {
        
         try 
@@ -28,11 +28,7 @@ public class MailService {
             InternetAddress[] adresats = new InternetAddress[students.size()];            
             for(int j=0; j< adresats.length; j++){              
                 adresats[j] = new InternetAddress(students.get(j).getMail());
-            }                                      
-            /*InternetAddress[] adresats = 
-            {
-                new InternetAddress("darya.markova.95@mail.ru"),
-            };*/
+            }                                                
             MimeMessage  mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false, "utf-8");  
             mimeMessage.setSubject("ВК-информер: оповещение от преподавателей", "utf-8");

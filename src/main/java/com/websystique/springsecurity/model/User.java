@@ -49,6 +49,17 @@ public class User {
 	@Column(name="state", nullable=false)
 	private String state=State.ACTIVE.getState();
         
+        @Column(name="signature", nullable=false)
+        private String signature;
+
+        public String getSignature() {
+            return signature;
+        }
+
+        public void setSignature(String signature) {
+            this.signature = signature;
+        }
+                        
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_profile", 
              joinColumns = { @JoinColumn(name = "user_id") }, 

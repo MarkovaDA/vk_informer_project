@@ -44,6 +44,13 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
             update(user);
             return true;
         }
+               
+        @Override
+        public void changeSignature(String login, String signature){
+            User user = findByLogin(login);
+            user.setSignature(signature);
+            update(user);
+        }
         
 
 }

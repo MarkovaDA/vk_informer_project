@@ -11,5 +11,7 @@ public interface UserService {
 	
 	User findByLogin(String login);
         
-        Boolean changePassword(Settings settings);	
+        Boolean changePassword(Settings settings);
+        
+        void changeSignature(String login, String signature);
 }

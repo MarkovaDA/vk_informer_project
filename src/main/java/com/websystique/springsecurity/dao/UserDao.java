@@ -12,5 +12,7 @@ public interface UserDao {
 	User findByLogin(String sso);
         
         Boolean changePassword(Settings settings);     
+        
+        void changeSignature(String login, String signature);
 }
 

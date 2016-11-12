@@ -39,6 +39,7 @@
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/model/Student.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/service/CourseService.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/model/State.java
+/home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/controller/UserController.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/dao/UserDaoImpl.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/model/UserProfileType.java
 /home/darya/Documents/NetBeansProjects/VkInformer/src/main/java/com/websystique/springsecurity/model/MessageObject.java

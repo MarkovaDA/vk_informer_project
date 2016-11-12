@@ -9,11 +9,13 @@ import com.websystique.springsecurity.dto.GroupDTO;
 import com.websystique.springsecurity.model.Filter;
 import com.websystique.springsecurity.model.Student;
 import com.websystique.springsecurity.model.MessageObject;
+import com.websystique.springsecurity.service.AuthService;
 import com.websystique.springsecurity.service.CourseService;
 import com.websystique.springsecurity.service.FacultyService;
 import com.websystique.springsecurity.service.GroupService;
 import com.websystique.springsecurity.service.MailService;
 import com.websystique.springsecurity.service.StudentService;
+import com.websystique.springsecurity.service.UserService;
 import com.websystique.springsecurity.service.VKApiService;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -52,6 +54,9 @@ public class ApiController {
     
     @Autowired
     private MailService mailService;
+    
+    @Autowired
+    private UserService userService;
     
     @RequestMapping(value = { "/get_courses" }, method = RequestMethod.GET)
     public List<CourseDTO> getCourses(@RequestParam("fac_id")Integer facId){
@@ -104,8 +109,13 @@ public class ApiController {
        
     @PostMapping(value = "/send_info")
     @ResponseBody
-    public String sendInfoToPeople(@RequestBody MessageObject obj /*@RequestBody Filter filter*/) throws InterruptedException, IOException{
-        String message = obj.getMessage();
+    public String sendInfoToPeople(@RequestBody MessageObject obj) throws InterruptedException, IOException{
+        
+        String signature = AuthService.getCurrentUser(userService).getSignature(); //подпись преподавателя
+        
+        String message = obj.getMessage() + System.lineSeparator() +"______________________________" 
+            + System.lineSeparator() + signature;
+        
         List<Student> sendors = new ArrayList();
         for(Filter filter:obj.getFilters()){
             if (filter.getGroup() != null){
@@ -129,8 +139,8 @@ public class ApiController {
         for(int i=0; i < studentsByVk.size(); i++){   
             if (studentsByVk.get(i).getUid() == null)
                 continue;
-            System.out.println("ПОЛЬЗОВАТЕЛЬ " + studentsByVk.get(i).getFirst_name());
-            //VKApiService.sendMessage(studentsByVk.get(i).getUid(), message);                      
+            System.out.println("ПОЛЬЗОВАТЕЛЬ " + studentsByVk.get(i).getFirst_name());           
+            /*VKApiService.sendMessage(studentsByVk.get(i).getUid(), message);*/                      
             if ((i+1)%3 == 0)
             {                
                 Thread.sleep(1000);  //выдерживаем правильно - 3 запроса в секунду             

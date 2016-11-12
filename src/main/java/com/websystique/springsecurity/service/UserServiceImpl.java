@@ -38,5 +38,8 @@ public class UserServiceImpl implements UserService{
             return dao.changePassword(settings);
         }
         
-       
+        @Override
+        public void changeSignature(String login, String signature){
+            dao.changeSignature(login, signature);
+        }
 }

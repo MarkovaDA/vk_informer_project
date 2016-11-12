@@ -11,6 +11,7 @@
         <script type="text/javascript" src='<c:url value="static_resources/js/customer.select.js"/>'></script>
         <script type="text/javascript" src='<c:url value="static_resources/js/data.injection.js"/>'></script>
         <link href="<c:url value='static_resources/css/semantic.min.css' />" rel="stylesheet"></link>
+        <link href="<c:url value='static_resources/css/custom_style.css' />" rel="stylesheet"></link>
     </head>
     <body>
         <div class="ui centered grid raised segment" style="width: 80%; margin: 0px auto !important; margin-top:50px !important;" >               
@@ -24,9 +25,9 @@
                     </div>
                     <div class="ui right floated segment" style="margin: 0px;padding:0px; border:none; box-shadow: none;">
                         <i class="large setting icon"></i>
-                         <a style="font-size: 1.1em !important; color: #4f20b5;" 
-                            href="<c:url value="adresat/settings"/>">Settings                    
-                         </a>
+                        <a class="violet_href" href="<c:url value="adresat/settings"/>">Настройки</a>
+                        <i class="large unlock alternate icon"></i>
+                        <a class="violet_href" href="app_logout">Выход</a> 
                     </div>                   
                 </div>
             </div>
