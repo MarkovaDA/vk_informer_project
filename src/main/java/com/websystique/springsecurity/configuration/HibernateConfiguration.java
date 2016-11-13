@@ -61,9 +61,10 @@ public class HibernateConfiguration {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost/vk_informer_db?useUnicode=true&amp;connectionCollation=utf8_general_ci&amp;characterSetResults=utf8&amp;characterEncoding=utf8");
-        dataSource.setUsername("root");
-        dataSource.setPassword("1234");
+        //jdbc:mysql://localhost/vk_informer_db
+        dataSource.setUrl("jdbc:mysql://vps3.vistar.su:3306/vk_informer_db?useUnicode=true&amp;connectionCollation=utf8_general_ci&amp;characterSetResults=utf8&amp;characterEncoding=utf8");
+        dataSource.setUsername("vkinformer"); //root
+        dataSource.setPassword("darya"); //1234
         return dataSource;
     }
     
