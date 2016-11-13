@@ -72,7 +72,7 @@
                     </div>
                     <br>
                     <div class="ui checkbox">
-                        <input type="checkbox">
+                        <input type="checkbox" id="only_captain">
                         <label>Отправить только старосте</label>
                     </div>
                     <br>        
@@ -88,7 +88,7 @@
                     <textarea style="width:100%;" rows="9" id="text_message"></textarea>
                     <br>                    
                     <div class="ui checkbox">
-                        <input type="checkbox">
+                        <input type="checkbox" id="add_signature">
                         <label>Добавить подпись</label>                      
                     </div>                   
                     <br><br>
@@ -96,6 +96,11 @@
                     <button class="ui violet button" style="float:right !important;">прикрепить файл</button>
                 </div>                                    
         </div>
-        <!--<a href="https://oauth.vk.com/authorize?client_id=5529263&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=offline,messages&response_type=token&v=5.37">get key</a>-->        
+        <!-- 
+        --79204282824
+            csf_bot
+        --
+        -->    
+        <!--<a href="https://oauth.vk.com/authorize?client_id=5529263&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=offline,messages&response_type=token&v=5.37">get key</a>-->     
     </body>
 </html>

@@ -106,28 +106,37 @@ public class ApiController {
         }
         return response.toString();
     } 
-       
+    //отправка сообщений выбранным людям  
     @PostMapping(value = "/send_info")
     @ResponseBody
     public String sendInfoToPeople(@RequestBody MessageObject obj) throws InterruptedException, IOException{
         
         String signature = AuthService.getCurrentUser(userService).getSignature(); //подпись преподавателя
+        //отправляемое сообщение
+        String message = obj.getMessage();
+        //добавляем подпись, если указано её добавить
+        if (obj.getAdd_signature())
+        message += System.lineSeparator() +"______________________________" 
+            + System.lineSeparator() + signature; 
         
-        String message = obj.getMessage() + System.lineSeparator() +"______________________________" 
-            + System.lineSeparator() + signature;
-        
-        List<Student> sendors = new ArrayList();
+        List<Student> sendors = new ArrayList(); //список получателей сообщений
+        //для каждого критерия
+        boolean onlyCaptain;
         for(Filter filter:obj.getFilters()){
+            onlyCaptain = filter.getOnly_captain(); //отправлять только старосте группы?
             if (filter.getGroup() != null){
-                sendors.addAll(studentService.getUidsByGroupId(filter.getGroup()));
+                //добавляем в писок получателей список студентов выбранной группы
+                sendors.addAll(studentService.getUidsByGroupId(filter.getGroup(), onlyCaptain));
                 continue;
             }
             else if (filter.getCourse() != null){
-                sendors.addAll(courseService.getUidsByCourseId(filter.getCourse()));
+                 //добавляем в писок получателей список студентов выбранного курса
+                sendors.addAll(courseService.getUidsByCourseId(filter.getCourse(), onlyCaptain));
                 continue;
             }
             else if (filter.getFaculty() != null){
-               sendors.addAll(facultyService.getUidsByFacultyId(filter.getFaculty()));
+                //добавляем в писок получателей список студентов выбранного факультета
+               sendors.addAll(facultyService.getUidsByFacultyId(filter.getFaculty(), onlyCaptain));
                continue;
             }
         }
@@ -139,8 +148,8 @@ public class ApiController {
         for(int i=0; i < studentsByVk.size(); i++){   
             if (studentsByVk.get(i).getUid() == null)
                 continue;
-            System.out.println("ПОЛЬЗОВАТЕЛЬ " + studentsByVk.get(i).getFirst_name());           
-            /*VKApiService.sendMessage(studentsByVk.get(i).getUid(), message);*/                      
+            //System.out.println("ПОЛЬЗОВАТЕЛЬ " + studentsByVk.get(i).getFirst_name());           
+            VKApiService.sendMessage(studentsByVk.get(i).getUid(), message);                     
             if ((i+1)%3 == 0)
             {                
                 Thread.sleep(1000);  //выдерживаем правильно - 3 запроса в секунду             

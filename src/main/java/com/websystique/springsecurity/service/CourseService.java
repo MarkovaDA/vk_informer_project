@@ -33,7 +33,7 @@ public class CourseService {
         return coursesDTO;          
     }
     
-    public List<Student> getUidsByCourseId(int courseId){
-        return dao.getStudentsFromCourse(courseId);
+    public List<Student> getUidsByCourseId(int courseId, boolean onlyCaptain){
+        return dao.getStudentsFromCourse(courseId, onlyCaptain);
     }
 }

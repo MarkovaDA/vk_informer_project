@@ -7,6 +7,7 @@ import com.websystique.springsecurity.model.Student;
 import com.websystique.springsecurity.model.User;
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository("studentDao")
 public class StudentDao extends AbstractDao<Integer, Student>{
-    
+    //метод использовался на стадии сборки базы данных - добавление множества записей
     public void saveMultipleStudents(List<Student> students){
         Session session = getSession().getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();       
@@ -33,20 +34,21 @@ public class StudentDao extends AbstractDao<Integer, Student>{
         session.close();
     }
     
-    //второй способ сохранения записей - проверка кодировки
-    public void saveMultipleStudents2(List<Student> students){
-         for(int i = 0; i < students.size(); i++){
-           getSession().save(students.get(i));
-        }
-    }
-    
+   
     //выбрать всех студентов по группе
-    public List<Student> getStudentsByGroupId(Integer groupId){
-        List<String> uids = new ArrayList<>();
-        List<Student> students = getSession().createCriteria(Student.class)
-                .add(Restrictions.eq("group.id", groupId)).
-                setResultTransformer(DistinctRootEntityResultTransformer.INSTANCE).list();
-        return students;
+    public List<Student> getStudentsByGroupId(Integer groupId, Boolean onlyCaptain){
+        /*List<Student> students = getSession().createCriteria(Student.class)
+                .add(Restrictions.eq("group.id", groupId))
+                .add(Restrictions.eq("isCaptain", onlyCaptain)).
+                setResultTransformer(DistinctRootEntityResultTransformer.INSTANCE).list();*/
+        
+        Criteria сriteria = getSession().createCriteria(Student.class)
+                 .add(Restrictions.eq("group.id", groupId));
+        //только старосту выбираем
+        if (onlyCaptain){
+            сriteria.add(Restrictions.eq("isCaptain", onlyCaptain));
+        }
+        return сriteria.setResultTransformer(DistinctRootEntityResultTransformer.INSTANCE).list();
     }
     
     //выбрать старосту группы
@@ -63,13 +65,12 @@ public class StudentDao extends AbstractDao<Integer, Student>{
                 .uniqueResult();
     }
     
-    //применить настройки
+    //применить настройки (cмена пароля,почты,флагов оповещений)
     public void applyStudentSettings(Settings settings){        
         //применить остальные настройки
         Student student = getStudentByUId(settings.getLogin());
         
         if (student != null) {
-            //обновляем почту, если она изменилась
             if (settings.getMail() != null && !settings.getMail().equals(student.getMail()))
                 student.setMail(settings.getMail());
             if (settings.getBy_mail() != null)

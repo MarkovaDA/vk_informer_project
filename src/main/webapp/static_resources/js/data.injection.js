@@ -50,7 +50,8 @@ $(document).ready(function(){
         //шаблоны фильтров для отображения
         filterObject["faculty"] = parseInt(selectedFaculty);
         filterObject["course"] = parseInt(selectedCourse);
-        filterObject["group"] = parseInt(selectedGroup);       
+        filterObject["group"] = parseInt(selectedGroup);
+        filterObject["only_captain"] = $('#only_captain').is(":checked");
         filterArray.push(filterObject);
         console.log(filterArray);
         var facultyText = ($('#faculty_value').val() !== "") ?  $('#faculty_value').val() : "";
@@ -73,6 +74,7 @@ $(document).ready(function(){
         $('#send_filters').click(function(){
             var obj = new Object(); //объект, состоящий 
                 obj.message = $('#text_message').val();
+                obj.add_signature = $('#add_signature').is(":checked"); //добавлять подпись
                 obj.filters = filterArray;
             
             console.log(obj);

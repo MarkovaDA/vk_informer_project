@@ -49,7 +49,7 @@
                 <div class="row" style="height: 300px;">
                     <p>Изменение подписи:</p>
                     <div class="ui input"  style="width: 100%;">
-                        <input type="text" id="text_signature" placeholder="введите подпись">
+                        <input type="text" id="text_signature" value="${signature}" placeholder="введите подпись">
                     </div>
                     <br><br>
                     <a class="ui label" id="status_apply" style="width: 100%; text-align: center;">Настройки применены успешно</a>

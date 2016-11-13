@@ -7,7 +7,18 @@ public class Filter {
     private Integer faculty;
     private Integer course;
     private Integer group;
+    private Boolean only_captain;
     
+
+    public Boolean getOnly_captain() {
+        return only_captain;
+    }
+
+    public void setOnly_captain(Boolean only_captain) {
+        this.only_captain = only_captain;
+    }
+
+        
     public Filter(){
     }
 

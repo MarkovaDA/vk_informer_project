@@ -29,7 +29,7 @@ public class FacultyService {
         return facultiesDto;
     }
     
-    public List<Student> getUidsByFacultyId(int facultyId){
-        return dao.getStudentsFromFaculty(facultyId);
+    public List<Student> getUidsByFacultyId(int facultyId, boolean onlyCaptain){
+        return dao.getStudentsFromFaculty(facultyId,onlyCaptain);
     }
 }

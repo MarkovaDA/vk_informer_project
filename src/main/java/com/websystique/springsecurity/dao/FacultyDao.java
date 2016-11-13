@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.DistinctRootEntityResultTransformer;
 import org.springframework.stereotype.Repository;
@@ -28,7 +29,7 @@ public class FacultyDao extends AbstractDao<Integer, Faculty>{
                 setResultTransformer(DistinctRootEntityResultTransformer.INSTANCE).list();
     }
     //все студенты факультета
-    public List<Student> getStudentsFromFaculty(int facultyId){
+    public List<Student> getStudentsFromFaculty(int facultyId, boolean onlyCaptain){
         Faculty faculty =  (Faculty)getSession().createCriteria(Faculty.class)
                 .add(Restrictions.eq("id", facultyId))
                 .uniqueResult();
@@ -43,9 +44,12 @@ public class FacultyDao extends AbstractDao<Integer, Faculty>{
             }
         }
         uids.addAll(students);
-        /*for(Student selectedStudent: students){
-           uids.add(selectedStudent);
-        }*/
+        if (onlyCaptain){
+            //фильтруем список,выбирая только старост
+            uids = uids.stream().filter(
+                item -> item.getIsCaptain() == true
+            ).collect(Collectors.toList());
+        }
         return uids;
     }
     

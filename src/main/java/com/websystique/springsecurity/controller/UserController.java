@@ -26,6 +26,7 @@ public class UserController {
         
         User currentUser = AuthService.getCurrentUser(userService);  
         map.addAttribute("user", currentUser.getLogin());
+        map.addAttribute("signature", currentUser.getSignature());
         return new ModelAndView("user_settings");
     }
     

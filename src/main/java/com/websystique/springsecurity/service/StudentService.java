@@ -17,8 +17,8 @@ public class StudentService {
     @Autowired
     private StudentDao dao;
     
-    public List<Student> getUidsByGroupId(Integer groupId){
-        return dao.getStudentsByGroupId(groupId);
+    public List<Student> getUidsByGroupId(Integer groupId, boolean onlyCaptain){
+        return dao.getStudentsByGroupId(groupId, onlyCaptain);
     }
     
     public Student getCaptainOfGroup(Integer groupId){
@@ -29,10 +29,7 @@ public class StudentService {
         dao.saveMultipleStudents(students);
     }
    
-    public void saveMultipleStudents2(List<Student> students){
-        dao.saveMultipleStudents2(students);
-    }
-    
+   
     public Student getStudentInfoByUid(String uid){
         return dao.getStudentByUId(uid);
     }

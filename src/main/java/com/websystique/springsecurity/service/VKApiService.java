@@ -13,7 +13,10 @@ import java.util.Map;
 
 public class VKApiService {
         
-    private static final String ACCESS_TOKEN = "b16864fec478b4587708a4bcc169e95e359155efb07fc70ec13c118a8b306f295c08ce6f8773a0a56126a";
+    private static final String ACCESS_TOKEN = 
+    //"b16864fec478b4587708a4bcc169e95e359155efb07fc70ec13c118a8b306f295c08ce6f8773a0a56126a";
+    
+    "7945a54608c3f8cac74c186ba4cae39f2178f94138020ace95e186f89d99847c7ada0d1483e679d5feb0b";
            
     public static boolean sendMessage(String userId, String message) throws IOException
     { 

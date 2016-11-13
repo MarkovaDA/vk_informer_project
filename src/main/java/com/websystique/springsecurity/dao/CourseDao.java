@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.transform.DistinctRootEntityResultTransformer;
 import org.springframework.stereotype.Repository;
@@ -24,7 +25,7 @@ public class CourseDao extends AbstractDao<Integer, Course>{
     }
     
     //все студенты курса
-    public List<Student> getStudentsFromCourse(int courseId){
+    public List<Student> getStudentsFromCourse(int courseId, boolean onlyCaptain){
         Course course  = (Course)getSession().createCriteria(Course.class)
                 .add(Restrictions.eq("id", courseId))
                 .uniqueResult();
@@ -33,11 +34,13 @@ public class CourseDao extends AbstractDao<Integer, Course>{
         for(Group group: groupByCources){
             students.addAll(group.getStudents());
         }
-        /*List<String> uids = new ArrayList<>();
-        
-        for(Student selectedStudent: students){
-           uids.add(selectedStudent.getUid());
-        }*/
+        //если нужны только старосты групп
+        if (onlyCaptain){
+           //фильтруем список,выбирая только старост
+            students = students.stream().filter(
+                item -> item.getIsCaptain() == true
+            ).collect(Collectors.toList());
+        }
         return students;
     } 
 }
