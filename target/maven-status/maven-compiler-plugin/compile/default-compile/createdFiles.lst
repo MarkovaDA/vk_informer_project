@@ -11,15 +11,15 @@ com/websystique/springsecurity/dto/StudentDTO.class
 com/websystique/springsecurity/util/QuickPasswordEncodingGenerator.class
 com/websystique/springsecurity/model/Filter.class
 com/websystique/springsecurity/configuration/RoleToUserProfileConverter.class
-com/websystique/springsecurity/controller/ApiController.class
 com/websystique/springsecurity/service/VKApiService.class
+com/websystique/springsecurity/controller/ApiController.class
 com/websystique/springsecurity/model/Faculty.class
 com/websystique/springsecurity/dao/UserProfileDao.class
 com/websystique/springsecurity/service/AuthService.class
 com/websystique/springsecurity/dao/UserDao.class
 com/websystique/springsecurity/model/MessageObject.class
-com/websystique/springsecurity/model/State.class
 com/websystique/springsecurity/configuration/MailConfig.class
+com/websystique/springsecurity/model/State.class
 com/websystique/springsecurity/model/Student.class
 com/websystique/springsecurity/model/Settings.class
 com/websystique/springsecurity/controller/ApiController$1.class
@@ -34,8 +34,8 @@ com/websystique/springsecurity/model/Group.class
 com/websystique/springsecurity/service/GroupService.class
 com/websystique/springsecurity/configuration/SecurityConfiguration.class
 com/websystique/springsecurity/service/UserService.class
-com/websystique/springsecurity/model/Transliteration.class
 com/websystique/springsecurity/service/UserProfileServiceImpl.class
+com/websystique/springsecurity/model/Transliteration.class
 com/websystique/springsecurity/dao/GroupDao.class
 com/websystique/springsecurity/service/CourseService.class
 com/websystique/springsecurity/dao/UserDaoImpl.class
@@ -47,6 +47,6 @@ com/websystique/springsecurity/service/UserProfileService.class
 com/websystique/springsecurity/model/Course.class
 com/websystique/springsecurity/controller/AdresatController.class
 com/websystique/springsecurity/service/FacultyService.class
-com/websystique/springsecurity/model/UserProfileType.class
 com/websystique/springsecurity/configuration/SecurityWebApplicationInitializer.class
+com/websystique/springsecurity/model/UserProfileType.class
 com/websystique/springsecurity/configuration/SpringMvcInitializer.class
